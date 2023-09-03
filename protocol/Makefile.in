@@ -1,0 +1,119 @@
+#
+# Makefile.in for trircd5
+#
+BN1             = tr
+BN2             = -ir
+BN3             = cd
+CC              = @CC@
+INSTALL         = @INSTALL@
+INSTALL_BIN     = @INSTALL_PROGRAM@
+INSTALL_DATA    = @INSTALL_DATA@
+INSTALL_SUID    = @INSTALL_PROGRAM@ -o root -m 4755
+RM              = @RM@
+LEX             = @LEX@
+AR              = @AR@
+LD		= @LD@
+RANLIB          = @RANLIB@
+MD5SUMS         = @MD5SUMS@
+LEXLIB          = @LEXLIB@
+CFLAGS          = @IRC_CFLAGS@ -DBASENAME=\"$(BN1)$(BN2)$(BN3)\" -DIRCD_PREFIX=\"@prefix@\"
+LDFLAGS         = @LDFLAGS@
+MKDEP           = @MKDEP@ -DBASENAME=\"$(BN1)$(BN2)$(BN3)\" -DIRCD_PREFIX=\"@prefix@\"
+MV              = @MV@
+GREP		= @GREP@
+RM              = @RM@
+YACC            = @YACC@
+PICFLAGS        = @PICFLAGS@
+GREP		= @GREP@
+prefix          = @prefix@
+exec_prefix     = @exec_prefix@
+bindir          = @bindir@
+libexecdir      = @libexecdir@
+libdir          = @libdir@
+sysconfdir      = @sysconfdir@
+localstatedir   = @localstatedir@
+BN1             = tr
+BN2             = -ir
+BN3             = cd
+PATCH           = ../include/patchlevel.h
+
+IRCD_EXE        = @PROG_IRCD@          
+MD5SUM_EXE      = @PROG_MD5SUM@
+
+PROGS           = $(IRCD_EXE) $(MD5SUM_EXE)
+
+STATICLIBS      = @STATIC_LIBS@
+IRCDLIBS        = $(SUBDIRLIBS) $(STATICLIBS) @MODULES_LIBS@ @LIBS@ 
+
+INCLUDES        = -I../include  
+CPPFLAGS        = ${INCLUDES} @CPPFLAGS@
+MODFLAGS	= @STATICFLAG@
+
+PROTO_0 = native.c 
+
+SOURCES = $(PROTO_0)
+
+OBJECTS = $(SOURCES:.c=.so)
+SHLIBS  = $(OBJECTS:.so=.sl)
+
+all: @MOD_TARGET@
+
+build: all
+
+depend:
+	@${MKDEP} $(INCLUDES) ${SOURCES} > .depend.tmp 
+	@sed -e '/^# DO NOT DELETE THIS LINE/,$$d' <Makefile >Makefile.depend
+	@echo '# DO NOT DELETE THIS LINE!!!' >>Makefile.depend
+	@echo '# make depend needs it.' >>Makefile.depend
+	@sed -e s/.o:/.so:/ <.depend.tmp >>Makefile.depend
+	@$(MV) Makefile.depend Makefile
+	@$(RM) -f .depend.tmp
+
+clean:
+	$(RM) -f *.so *~ *.a *.lo *.sl
+
+distclean: clean
+	$(RM) -f Makefile
+
+.SUFFIXES: .so .sl
+
+.c.so:
+	$(CC) -DTOKEN $(PICFLAGS) $(CFLAGS) $(INCLUDES) $(MODFLAGS) $< -o $@
+
+.so.sl:
+	$(LD) -b $< -o $@
+
+dynamic: $(OBJECTS)
+
+shlibs: $(SHLIBS)
+
+hpux_shared: $(OBJECTS)
+	${MAKE} shlibs
+
+static: $(OBJECTS)
+	$(RM) -f libproto.a
+	$(AR) cq libproto.a native.so
+	$(RANLIB) libproto.a
+
+install:
+	-@if test -z "`grep STATIC_MODULES\ 1 ../include/setup.h`" ; then \
+		echo "Installing protocol support module files" ; \
+		echo "$(INSTALL) -d ${libdir}/protocol" ; \
+		$(INSTALL) -d ${libdir}/protocol ; \
+		echo "$(INSTALL) *.s* ${libdir}/protocol" ; \
+		$(INSTALL) *.s* ${libdir}/protocol ; \
+	else \
+		echo "Not installing protocol support module files, since STATIC_MODULES defined." ; \
+	fi
+
+makesums:
+	@echo "Creating .md5sums..."
+	@$(RM) -f .md5sums
+	@for i in $(SOURCES); do \
+		$(MD5SUMS) $$i >> .md5sums; \
+	done
+
+.PHONY: depend clean distclean
+
+# DO NOT DELETE THIS LINE!!!
+# make depend needs it.

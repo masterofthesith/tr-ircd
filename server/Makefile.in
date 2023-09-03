@@ -1,0 +1,91 @@
+#
+# Makefile.in for trircd5
+#
+BN1             = tr
+BN2             = -ir
+BN3             = cd
+CC              = @CC@
+INSTALL         = @INSTALL@
+INSTALL_BIN     = @INSTALL_PROGRAM@
+INSTALL_DATA    = @INSTALL_DATA@
+INSTALL_SUID    = @INSTALL_PROGRAM@ -o root -m 4755
+RM              = @RM@
+LEX             = @LEX@
+AR              = @AR@
+RANLIB          = @RANLIB@
+MD5SUMS         = @MD5SUMS@
+LEXLIB          = @LEXLIB@
+CFLAGS          = @IRC_CFLAGS@ -DBASENAME=\"$(BN1)$(BN2)$(BN3)\" -DIRCD_PREFIX=\"@prefix@\"
+LDFLAGS         = @LDFLAGS@
+MKDEP           = @MKDEP@ -DBASENAME=\"$(BN1)$(BN2)$(BN3)\" -DIRCD_PREFIX=\"@prefix@\"
+MV              = @MV@
+RM              = @RM@
+YACC            = @YACC@
+prefix          = @prefix@
+exec_prefix     = @exec_prefix@
+bindir          = @bindir@
+libexecdir      = @libexecdir@
+libdir          = @libdir@
+sysconfdir      = @sysconfdir@
+localstatedir   = @localstatedir@
+
+IRCD_EXE        = @PROG_IRCD@          
+MD5SUM_EXE      = @PROG_MD5SUM@
+
+PROGS           = $(IRCD_EXE) $(MD5SUM_EXE)
+
+STATICLIBS      = @STATIC_LIBS@
+IRCDLIBS        = $(SUBDIRLIBS) $(STATICLIBS) @MODULES_LIBS@ @LIBS@ 
+
+INCLUDES        = -I../include  
+CPPFLAGS        = ${INCLUDES} @CPPFLAGS@
+
+SRV_0 = s_accept.c s_auth.c s_boot.c s_bsd.c s_bsd_devpoll.c s_bsd_epoll.c s_bsd_kqueue.c
+SRV_1 = s_bsd_poll.c s_bsd_select.c s_bsd_sigio.c s_conf.c s_dcc.c s_debug.c
+SRV_2 = s_err.c s_exit.c s_flood.c s_kline.c s_lev.c s_listener.c
+SRV_3 = s_misc.c s_motd.c s_numeric.c s_packet.c s_query.c s_send.c s_serv.c
+SRV_4 = s_servauth.c s_service.c s_signal.c s_silence.c s_user.c s_validity.c
+
+SOURCES = $(SRV_0) $(SRV_1) $(SRV_2) $(SRV_3) $(SRV_4)
+
+OBJECTS = $(SOURCES:.c=.o)
+
+all: server.a
+
+build: all
+
+# Yuck - don't use this.
+depend:
+	@${MKDEP} $(INCLUDES) ${SOURCES} > .depend.tmp 
+	@sed -e '/^# DO NOT DELETE THIS LINE/,$$d' <Makefile >Makefile.depend
+	@echo '# DO NOT DELETE THIS LINE!!!' >>Makefile.depend
+	@echo '# make depend needs it.' >>Makefile.depend
+	@cat .depend.tmp >>Makefile.depend
+	@$(MV) Makefile.depend Makefile
+	@$(RM) -f .depend.tmp
+
+clean:
+	$(RM) -f *.o server.a *~ core
+
+distclean: clean
+	$(RM) -f Makefile
+
+.c.o:
+	$(CC) $(CFLAGS) $(INCLUDES) -c $<
+
+server.a: $(OBJECTS)
+	$(RM) -f $@
+	$(AR) rc $@ $(OBJECTS)
+	$(RANLIB) $@
+
+install: build
+
+makesums:
+	@echo "Creating .md5sums..."
+	@$(RM) -f .md5sums
+	@for i in $(SOURCES); do \
+		$(MD5SUMS) $$i >> .md5sums; \
+	done
+
+# DO NOT DELETE THIS LINE!!!
+# make depend needs it.
