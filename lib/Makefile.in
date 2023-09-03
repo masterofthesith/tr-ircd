@@ -1,0 +1,88 @@
+#
+# Makefile.in for trircd5
+#
+BN1             = tr
+BN2             = -ir
+BN3             = cd
+CC              = @CC@
+INSTALL         = @INSTALL@
+INSTALL_BIN     = @INSTALL_PROGRAM@
+INSTALL_DATA    = @INSTALL_DATA@
+INSTALL_SUID    = @INSTALL_PROGRAM@ -o root -m 4755
+RM              = @RM@
+LEX             = @LEX@
+AR              = @AR@
+RANLIB          = @RANLIB@
+MD5SUMS         = @MD5SUMS@
+LEXLIB          = @LEXLIB@
+CFLAGS          = @IRC_CFLAGS@ -DBASENAME=\"$(BN1)$(BN2)$(BN3)\" -DIRCD_PREFIX=\"@prefix@\"
+LDFLAGS         = @LDFLAGS@
+MKDEP           = @MKDEP@ -DBASENAME=\"$(BN1)$(BN2)$(BN3)\" -DIRCD_PREFIX=\"@prefix@\"
+MV              = @MV@
+RM              = @RM@
+YACC            = @YACC@
+prefix          = @prefix@
+exec_prefix     = @exec_prefix@
+bindir          = @bindir@
+libexecdir      = @libexecdir@
+sysconfdir      = @sysconfdir@
+localstatedir   = @localstatedir@
+
+PROGS           = @PROG_TOOLS@ converter.sh
+
+STATICLIBS      = @STATIC_LIBS@
+IRCDLIBS        = $(SUBDIRLIBS) $(STATICLIBS) $(LDFLAGS) @MODULES_LIBS@ @LIBS@ 
+
+INCLUDES        = -I../include -Imd5 -Iregex
+CPPFLAGS        = ${INCLUDES} @CPPFLAGS@
+
+SRC_0 = md5hash.c regmatch.c
+
+SOURCES = $(SRC_0)
+OBJECTS = $(SOURCES:.c=.o) regex.o
+
+all: library
+
+build: all
+
+depend:
+	@${MKDEP} $(INCLUDES) ${SOURCES} > .depend.tmp
+	@sed -e '/^# DO NOT DELETE THIS LINE/,$$d' <Makefile >Makefile.depend
+	@echo '# DO NOT DELETE THIS LINE!!!' >>Makefile.depend
+	@echo '# make depend needs it.' >>Makefile.depend
+	@cat .depend.tmp >>Makefile.depend
+	@$(MV) Makefile.depend Makefile
+	@$(RM) -f .depend.tmp
+
+library: $(OBJECTS)
+	${MAKE} -C uuid library
+	$(RM) -f ilib.a
+	$(AR) cqv ilib.a $(OBJECTS) md5/md5.o uuid/*.o
+	$(RANLIB) ilib.a
+
+clean:
+	$(RM) -f $(OBJECTS) *.a *.o *~ core
+	${MAKE} -C uuid clean
+
+distclean: clean
+	${MAKE} -C uuid distclean
+	$(RM) -f Makefile
+
+regex.o:
+	$(CC) -Iregex -c regex/regex.c -o $@
+
+.c.o:
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c $<
+
+install:
+
+makesums:
+	@echo "Creating .md5sums..."
+	@$(RM) -f .md5sums
+	@for i in $(SOURCES); do \
+		$(MD5SUMS) $$i >> .md5sums; \
+	done
+
+
+# DO NOT DELETE THIS LINE
+# make depend needs it.

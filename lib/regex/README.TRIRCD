@@ -1,0 +1,11 @@
+This subdirectory has been created with files from the regex-0.12 package.
+We did not include the test and the documentation, nor the original
+compilation.
+
+The regex package can be obtained from:
+http://www.gnu.org/directory/regex.html
+
+This package uses the GPL Version 2 license, and it is also included.
+
+TR-IRCD Development Team
+
