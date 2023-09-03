@@ -1,0 +1,5 @@
+SAMODE <kanal> <parametreler>
+
+Belirtilen kanalýn modlarýný degistirir. Yalnýzca
+services admin seviyesindeki irc operatorler kullanabilir.
+

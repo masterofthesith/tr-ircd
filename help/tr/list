@@ -1,0 +1,6 @@
+LIST [maske]
+
+Aktüel kanal listesini, iclerindeki kullanici sayisini
+ve de kanal basligini (topic) gösterir. Bir maske belir-
+tilirse, buna uyan kanallar listelenir. Detayli bilgi icin
+/list ?

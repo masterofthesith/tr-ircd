@@ -1,0 +1,6 @@
+USERHOST <nick>
+
+Belirtilen nickin kullanici adi, hostu, away durumu, 
+ircop durumu ve de gercek ismi gibi bilgileri tek bir
+satirda gösterir.
+

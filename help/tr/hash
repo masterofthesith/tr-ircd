@@ -1,0 +1,17 @@
+HASH [server|nick] <madde>
+
+verilen madde hakkýnda local ya da uzak server
+hakkýndaki bilgileri verir.
+
+mevcut maddeler þunlardýr:
+ULIMIT - 'ulimit -a' bilgisi gösterir
+UNAME - 'uname -a' bilgisi gösterir
+SYSTEM - src/ klasöründeki dosyalarýn md5sum'larýný gösterir.
+SERVER - server/ klasöründeki dosyalarýn md5sum'larýný gösterir.
+MODULES - modules/ klasöründeki dosyalarýn md5sum'larýný gösterir.
+CMODES - chanmodes/ klasöründeki dosyalarýn md5sum'larýný gösterir.
+PROTOCOL - protocol/ klasöründeki dosyalarýn md5sum'larýný gösterir.
+INCLUDES - include/ klasöründeki dosyalarýn md5sum'larýný gösterir.
+LOGSYSTEM - src/logsystem klasöründeki dosyalarýn md5sum'larýný gösterir.
+
+

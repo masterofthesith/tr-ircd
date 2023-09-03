@@ -1,0 +1,4 @@
+MOTD [nick|sunucu]
+
+Belirtilen sunucunun ya da yerel sunucunun
+"motd", günün mesaji dosyasini gösterir.

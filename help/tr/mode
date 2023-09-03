@@ -1,0 +1,7 @@
+MODE <nick|kanal> <parametre>
+
+Belirtilen nick ya da kanalin kipini degistirir.
+Bu kipler hakkinda detayli bilgi icin
+/helpme usermodes
+/helpme channelmodes
+komutlarini kullanabilirsiniz.

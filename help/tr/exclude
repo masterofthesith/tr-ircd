@@ -1,0 +1,6 @@
+EXCLUDE - Serverlar arasý protokol komutu
+
+Exclude komutu akill'in tersi bir etki yaratýr
+exclude yapýlmýþ user@host adresleri
+akill etkisinden etkilenmezler.
+

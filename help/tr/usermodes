@@ -1,0 +1,19 @@
+Kullanilabilir kullanici kipleri:
+
+a: services admin, /samode yetkisi
+A: server admin, modül komutlarini kullanma yetkisi
+c: ozel mesajlarda renk kullanilmaz
+C: ozel mesajlarda ctcp kullanilmaz
+h: kullanýcý helper modu
+H: gizli parametrelere eriþilebilirlik modu
+i: gizli kullanici, /who ile görünmeyen
+n: Server notice mesajlarýný alabilen kullanýcý
+o: irc operator /kill /kline /gline kullanabilir
+p: /whois de bos durdugu zaman (idle suresi) gorunmez kullacinin
+P: /accept komutu ile eklenenler hariç hiçbir özelmesaj/notice almama modu
+r: kayitli kullanici
+R: kayitsiz kullanicilardan mesaj gelmeyen kullanici
+w: kanallari /whois de gizli kullanici
+x: hostu gizli kullanici
+t: ceviri kipi
+z: herkes ile DCC yolundan baðlantý kurabilen kullanýcý, /dccallow

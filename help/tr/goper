@@ -1,0 +1,6 @@
+GOPER - Serverlar arasý protokol komutu
+
+Gnotice benzeri bir komuttur. Ancak komut kaynagý
+U-line'li bir giriþ olmalýdýr. Yani services 
+tarafýndan yollanýr.
+

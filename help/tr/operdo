@@ -1,0 +1,24 @@
+OPERDO <help|mode|kick|topic|join> <kanalismi> [parametreler]
+
+Bu irc operator komutu kanalda hiçbir yetki olmaksýzýn
+bazý deðiþiklikler yapmaya yarar.
+
+Örnekler:
+
+/operdo MODE #test +m
+
+#test kanalýný +m moduna alýr
+
+/operdo KICK #test Lamer :out!
+
+#test kanalýndan Lamer nickli kiþiyi atar
+
+/operdo JOIN #test +o TheOne
+
+Bu komut önce #test kanalýna girmenizi sonra da 
+TheOne nickine op vermenizi saglar.
+Bu komut kanal ele geçirilmiþse kullanýþlýdýr.
+Bu sayede neler oldugunu görebilirsiniz.
+Böyle bir durumda /operdo join #test +oa nickiniz nickiniz
+komutu kullanýlabilir
+

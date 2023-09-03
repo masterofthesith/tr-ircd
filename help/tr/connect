@@ -1,0 +1,7 @@
+CONNECT [*|serveradý][port][serveradý]
+
+Bu serverin ya da tanýmlanan uzak serverin
+verilen porttan belirtilen servera baglanmasýný
+saglayan irc operator komutu
+
+ 

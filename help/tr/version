@@ -1,0 +1,24 @@
+VERSION [nick|sunucu]
+
+Belirtilen sunucunun ya da yerel sunucunun versiyonunu gösterir.
+Bu bilgide asagidaki isaretler bulunabilir:
+
+TS7 : TS5 basarimli TRIRCD sunucu
+Z   : ZIPLINKS destegi acik
+E   : OpenSSL destegi acik
+6   : IPv6 destegi acik
+G   : ceviri modu acik
+SM  : Modül destegi kapali
+DM  : Modül destegi acik
+NB  : Gelistirilmis bellek fonksiyonlari kapali
+B   : Gelistirilmis bellek fonksiyonlari acik
+SN  : Kücük ag destegi acik
+NN  : Normal ag destegi acik
+
+Asagidaki alternatifler select() fonksiyonu icin kullanilabilir:
+poll 
+select 
+sigio 
+devpoll 
+kqueue
+

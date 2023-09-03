@@ -1,0 +1,5 @@
+MKPASSWD <salt metin>
+
+Belirtilen metnin md5 algoritmasi ile
+saklanmis halini gösterir.
+

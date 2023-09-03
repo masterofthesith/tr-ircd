@@ -1,0 +1,72 @@
+#
+# Makefile.in for trircd5
+#
+CC              = @CC@
+INSTALL         = @INSTALL@
+INSTALL_BIN     = @INSTALL_PROGRAM@
+INSTALL_DATA    = @INSTALL_DATA@
+INSTALL_SUID    = @INSTALL_PROGRAM@ -o root -m 4755
+RM              = @RM@
+LEX             = @LEX@
+AR              = @AR@
+RANLIB          = @RANLIB@
+MD5SUMS         = @MD5SUMS@
+LEXLIB          = @LEXLIB@
+CFLAGS          = @IRC_CFLAGS@ -DIRCD_PREFIX=\"@prefix@\"
+LDFLAGS         = @LDFLAGS@
+MKDEP           = @MKDEP@ -DIRCD_PREFIX=\"@prefix@\"
+CP		= @CP@
+MV              = @MV@
+RM              = @RM@
+YACC            = @YACC@
+PICFLAGS        = @PICFLAGS@
+prefix          = @prefix@
+exec_prefix     = @exec_prefix@
+bindir          = @bindir@
+libexecdir      = @libexecdir@
+libdir          = @libdir@
+datadir		= @datadir@
+sysconfdir      = @sysconfdir@
+localstatedir   = @localstatedir@
+
+# Local to the etc Makefile
+mandir          = @prefix@/man/man8
+confmandir	= @prefix@/man/man5
+STATICLIBS      = @STATIC_LIBS@
+IRCDLIBS        = $(SUBDIRLIBS) $(STATICLIBS) @MODULES_LIBS@ @LIBS@ 
+
+INCLUDES        = -I../include  
+CPPFLAGS        = ${INCLUDES} @CPPFLAGS@
+MODFLAGS	= @STATICFLAG@
+
+all:
+
+build:
+
+depend:
+
+distclean: 
+	$(RM) Makefile
+
+clean:
+
+install:
+	@echo "Installing help files"
+	$(INSTALL) -d ${datadir}/help
+	${CP} -R en_us tr ${datadir}/help/
+
+uninstall:
+	@echo "Removing help files"
+	${RM} -rf ${datadir}/help
+
+makesums:
+	@echo "Creating .md5sums..."
+	@$(RM) -f .md5sums
+	@for i in $(SOURCES) version.c.SH; do \
+		$(MD5SUM) $$i >> .md5sums; \
+	done
+
+.PHONY: depend clean distclean
+
+# DO NOT DELETE THIS LINE!!!
+# make depend needs it.

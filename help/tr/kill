@@ -1,0 +1,6 @@
+KILL <nick> [Sebep]
+
+Belirtilen nickin baglantýsýný kesmek icin kullanýlan
+irc operator komutudur. Eger bir sebep belirtilmiþse
+bu da eklenir.
+

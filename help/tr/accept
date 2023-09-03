@@ -1,0 +1,5 @@
+ACCEPT [list|+nick|-nick]
+
+Bu komut sizin özel mesaj izin listenizi düzenler
++/- parametreleri kiþi eklemenize/silmenize yarar
+list parametresiyle accept listenizi görebilirsiniz.

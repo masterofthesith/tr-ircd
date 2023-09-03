@@ -1,0 +1,6 @@
+LUSERS [nick|sunucu]
+
+Cevrimici (online) kullanici sayisi, en fazla baglanan
+kullanici sayisi gibi bilgileri yerel sunucu ve de 
+tüm ag icin belirtir. Nick ve ya sunucu parametresi
+hangi sunucunun sorgulanacagini gösterir.

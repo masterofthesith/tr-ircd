@@ -1,0 +1,5 @@
+OPER <kullanici> <sifre>
+
+Dogru bir kullanici sifre cifti ile ircop seviyesine
+gecmenizi saglar. Bunun icin bir operator { } bölümüne
+ihtiyac vardir.

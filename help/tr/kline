@@ -1,0 +1,11 @@
+KLINE [zaman] <nick|user@host> : <acýklama>
+
+Bu Irc operator komutu verilen hostname'e
+ya da user@host maskesine bir kill satýrý
+ekler.
+
+
+Varsayýlan olarak 30 dakika süre ile
+geçerli kalýr. Ancak bu süre zaman
+parametresi ile degistirilebilir.
+

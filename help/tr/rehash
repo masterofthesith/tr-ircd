@@ -1,0 +1,28 @@
+REHASH [item]
+
+Local serverin konfigürasyon dosyasýný yeniden okumasýný
+saðlar. Eger bir parametre girilmiþse sadece belirtilen 
+kýsýmlar tekrar okunur.
+
+Parametreler þunlardýr:
+
+DNS : Çözünenleri sýfýrlar
+SZLINES : Geçici zlinelarý kaldýrýr
+TKLINES : Geçici klinelarý kaldýrýr
+GC : Çöp toplamasý yapar
+MOTD : Motd dosyasýný yeniden okur
+LINKS : Links dosyasýný yeniden okur
+IP : IP hash tablosunu tekrar hash eder
+AKILLS : Bütün geçici akilleri kaldýrýr
+EXCLUDES : Tüm akill muafiyetlerini kaldýrýr
+JUPITERS : Tüm Jupiter tanýmlamalarýný kaldýrýr
+SQLINES : Tüm sqline'larý kaldýrýr
+SGLINES : Tüm sgline'larý kaldýrýr
+SZLINES : Tüm szline'larý kaldýrýr
+TEMPMASKS : Bütün gecici maskitem'leri kaldýrýr
+PERSMASKS : Bütün kalýcý maskitem'leri kaldýrýr (config dosyasýndan okuyarak)
+WRITECONF : Server konfigurasyon dosyasýna yazar
+THROTTLES : Throttle listesindeki tüm hostlarý kaldýrýr
+ALL : Yukardakilerin tümünü uygular
+
+

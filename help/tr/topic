@@ -1,0 +1,5 @@
+TOPIC <kanal> [metin]
+
+Belirtilen kanalin basligini degistirir ya da metin
+belirtilmemis ise, aktüel basligi gösterir.
+

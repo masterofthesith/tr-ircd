@@ -1,0 +1,4 @@
+PASS <sifre>
+
+Irc oturumuna baslamadan önce oturum sifrenizi belirler.
+Bu, auth { } blokundaki sifreye denktir.

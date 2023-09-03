@@ -1,0 +1,5 @@
+KICK <kanal> <nick[,nick,...]> [aciklama]
+
+Bu komut, sözkonusu kullanicilari belirtilen
+sebep ile o kanaldan atar.
+

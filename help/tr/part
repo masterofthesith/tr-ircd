@@ -1,0 +1,4 @@
+PART <kanal[,kanal,...]> [metin]
+
+Belirtilen kanal ya da kanallardan cikmanizi saglar.
+Metin ayrica bir PART mesaji olarak gösterilir.

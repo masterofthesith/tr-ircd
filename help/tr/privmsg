@@ -1,0 +1,6 @@
+PRIVMSG <hedef> <metin>
+
+Belirtilen hedefe bir metin gönderir.
+Bu hedef baska bir kullanici ya da bir kanal
+olabilir.
+

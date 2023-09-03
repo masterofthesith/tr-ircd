@@ -1,0 +1,37 @@
+Kullanilabilir kanal kipleri listesi:
+
+a: Koruma, KICK komutundan korur
+b: BAN maskesi
+c: Renk kullanimi engellenir
+C: CTCP/DCC/ACTION metinleri engellenir
+d: /quit ve /part mesajlarý kanalda görüntülenmez
+e: ban maskesini tersine cevirir
+f: flood korumasini ayarlar
+g: kayitsiz nicklerin konusamayacagi kanal
+h: halfop, op dan daha az yetkili bir kullanici
+i: inviteonly, sadece davetle girilebilen kanal
+I: inviteonly özelligini etkisiz kilan maske
+j: /who ve /names sadece kanal kullanýcýlarý tarafýndan kullanýlabilir
+J: belirtilen süre gecmeden kanala girmek mümkün olmaz.
+k: giris icin gereken anahtar
+K: knock komutu durdurulur
+l: En fazla girebilen kullanici sayisi
+L: baska bir kanala iletim (link)
+m: sadece özel kimselerin konusabilecegi kanal
+M: sadece belirtilen maskedeki kisilerin konusamayacagi kanal
+N: Gecerli hostname leri olmayan kullanicilarin konusamayacagi kanal
+n: Kanalda konusmak icin kanala girmek gereken kanal
+o: op
+O: ircoplara özgün bir kanal
+p: özel bir kanal, /list komutu ile saklanir
+q: sessiz bir kanal, servera ait kanallarda kullanilir
+r: kayitli bir kanal
+R: sadece kayitli kullanicilarin kullanabilecegi bir kanal
+s: gizli bir kanal, /whois ile saklanir.
+t: /topic icin op olmak gereken bir kanal
+T: /topic icin korumali olmak gereken bir kanal
+u: kanal sahibi
+v: +m kanallarda konusabilen kisi
+w: Filtrelerin kapali oldugu bir kanal
+x: oplarin gizlendigi bir kanal
+z: belirtilen maskedeki kanallarda bulunan kisiler bu kanala giremez

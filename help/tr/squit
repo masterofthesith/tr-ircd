@@ -1,0 +1,6 @@
+SQUIT [Serveradresi]
+
+Bu irc operator komutu verilen serverin networkten baglantýsýný keser.
+Eger parametre belirtilmezse sizin baglantýnýz kesilir.
+
+

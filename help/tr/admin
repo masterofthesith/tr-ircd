@@ -1,0 +1,6 @@
+ADMIN [nick|sunucu]
+
+Bir sunucu hakkinda yönetimsel bilgi gösterir.
+Sunucu ya da nick parametreleri ile de kullanilabilir,
+parametresiz durumda yerel sunucu sorgulanir.
+

@@ -1,0 +1,63 @@
+STATS <tip> [nick|sunucu]
+
+Belirtilen sunucuyu ya da yerel sunucuyu belirtilen
+tipte sorgular.
+
+Tipler sunlar olabilir:
+
+? sunucu bilgisi
+A autokill listesi
+B dcc block listesi
+C connect block listesi
+D bellek kullanimi
+E exclude listesi
+F file descriptor listesi
+G g:line listesi
+H hub listesi
+I auth block listesi
+J jupiter listesi
+K k:line listesi
+L LogEvent dökümü
+M komut kullanimi
+N ag istatistikleri
+O ircoplar
+P portlar
+Q Q:lines
+R redirect lines
+S bagli SERVICE ler
+T sunucu istatistikleri
+U ulined sunucular
+V daha fazla sunucu bilgisi
+W - unused
+X event dökümü
+Y siniflar
+Z szline listesi
+
+a autokill listesi
+b bellek kullanimi
+c kullanilan connect block listesi
+d detayli bellek kullanimi
+e exception auth blocks
+f file descriptor listesi
+g sgline listesi
+h hook listesi
+i auth block listesi
+j services jupiterleri
+k temporary kline listesi
+l link bilgisi
+m komut kullanimi
+n ag istatistikleri
+o operator blocklari
+p protokol tipi
+q sqline listesi
+r redirect lines
+s service blocklari
+t throttle bilgisi
+u acik kalinan zaman
+v autoconnect auth blocks
+w - unused
+x event dökümü
+y siniflar
+z szline listesi
+
+~ Configured dns sunucu listesi

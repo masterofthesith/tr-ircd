@@ -1,0 +1,7 @@
+JOIN <kanal[,kanal,...]> [anahtar[,anahtar,...]] [0]
+
+Belirtilen kanal ya da kanallara, belirtilen anahtar 
+ya da anahtarlari kullanarak girmenize olanak saglar.
+
+Eger 0 kanalina girmeye kalkarsaniz, bütün kanallari-
+nizdan cikarsiniz.

@@ -1,0 +1,5 @@
+DCCALLOW [list|+nick|-nick]
+
+Bu komut sizin dcc komutu kullanmalarina izin verdiginiz
+kullanicilari belirler. + ile bir kullanici ekler, - ile
+silersiniz. list ile ise Aktüel listeyi gösterebilirsiniz.

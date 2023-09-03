@@ -1,0 +1,7 @@
+SERVICE - Serverlar arası protokol komutu
+
+Eger bir baglantı durumunda kullanılırsa, bu servera
+baglanan kısmın service oldugunu anlatır. Eger bir servis 
+bu komutu alırsa serverin services almaya hazır oldugunu
+anlatır.
+

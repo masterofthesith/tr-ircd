@@ -1,0 +1,13 @@
+modules MODULES - Etkileþimli modül yönetimi
+modules
+modules Modül yönetim sistemi istemleri için
+modules 5 admin komutu vardýr
+modules
+modules MODLOAD <modül> : belirtilen modülü yükler
+modules MODUNLOAD <module> : belirtilen modülü unload yapar
+modules MODLIST : yüklenmiþ tüm modülleri listeler
+modules MODRESTART : modül yükleme sýrasýný yeniden baþlatýr
+modules MODRELOAD <module> : belirtilen modülü geri yükler
+modules
+modules End of /HELP.
+

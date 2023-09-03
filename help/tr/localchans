@@ -1,0 +1,18 @@
+localchans IRCd, IRC operatörlere yönetimde yardýmcý olmasý için aþaðýdaki kanallarý barýndýrýr.
+localchans
+localchans &NOTICE         "Server noticeleri - önceki +s modu"    kullanýcý-girebilir
+localchans &SNOTICE        "Server noticeleri - önceki +so modu"   sadece-oper
+localchans &CONNECTS       "Servera giren ve çýkan baðlantýlar"    sadece-oper       (eski +c modu)
+localchans &REJECTS        "Reddedilen baðlantýlar"                sadece-oper
+localchans &KILLS          "Server Killeri"                        sadece-oper       (eski +k modu)
+localchans &KLINES         "K-line iþlemleri"                      sadece-oper
+localchans &QLINES         "Yasaklanan ve reddedilen rumuzlar"     sadece-oper
+localchans &STATS          "Yayýnlanan server sorgu mesajlarý"     sadece-oper       (eski +y modu)
+localchans &DCCSEND        "Reddedilen DCC gönderimleri"           sadece-oper       (eski +m modu)
+localchans &FLOOD          "Flood uyarýlarý"                       sadece-oper       (eski +f modu)
+localchans &SPAMBOT        "Muhtemel reklam botlarý"               sadece-oper       (eski +e modu)
+localchans &DEBUG          "Debug bilgi uyarýlarý"                 sadece-oper       (eski +d modu)
+localchans &SERVICES       "Baðlanan servisler hakkýnda uyarýlar"  sadece-oper
+localchans &PROXYMON       "Proxy tarama monitör uyarýlarý"        sadece-oper
+localchans
+localchans End of /HELP.

@@ -1,0 +1,5 @@
+SILENCE [+maske][-maske]
+
+Belirtilen maskedeki kullanicilarin size mesaj 
+atmalarini engeller, ya da bu maskeyi kaldirip
+size tekrar mesaj atilabilmesine olanak saglar.
