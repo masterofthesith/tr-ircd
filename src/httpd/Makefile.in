@@ -1,0 +1,96 @@
+#
+# Makefile.in for trircd5
+#
+BN1             = tr
+BN2             = -ir
+BN3             = cd
+CC              = @CC@
+INSTALL         = @INSTALL@
+INSTALL_BIN     = @INSTALL_PROGRAM@
+INSTALL_DATA    = @INSTALL_DATA@
+INSTALL_SUID    = @INSTALL_PROGRAM@ -o root -m 4755
+RM              = @RM@
+LEX             = @LEX@
+AR              = @AR@
+RANLIB          = @RANLIB@
+MD5SUMS         = @MD5SUMS@
+LEXLIB          = @LEXLIB@
+CFLAGS          = @IRC_CFLAGS@ -DBASENAME=\"$(BN1)$(BN2)$(BN3)\" -DIRCD_PREFIX=\"@prefix@\"
+LDFLAGS         = @LDFLAGS@
+BITFLAGS	= @BITFLAGS@
+PICFLAGS        = @PICFLAGS@
+MODFLAGS        = @STATICFLAG@
+MKDEP           = @MKDEP@
+MV              = @MV@
+GREP		= @GREP@
+RM              = @RM@
+YACC            = @YACC@
+prefix          = @prefix@
+exec_prefix     = @exec_prefix@
+bindir          = @bindir@
+libexecdir      = @libexecdir@
+libdir          = @libdir@
+sysconfdir      = @sysconfdir@
+localstatedir   = @localstatedir@
+
+STATICLIBS	= @STATIC_LIBS@
+
+INCLUDES        = -I../../include
+CPPFLAGS        = ${INCLUDES} @CPPFLAGS@
+
+HTTPD		= httpd.so
+
+HSRCS_0 = httpd_author.c httpd_config.c httpd_get.c httpd_headers.c
+HSRCS_1 = httpd_init.c httpd_main.c httpd_reader.c httpd_post.c httpd_send.c
+
+SOURCES = $(HSRCS_0) $(HSRCS_1)
+
+OBJECTS = $(SOURCES:.c=.o)
+
+all: @MOD_TARGET@
+
+build: all
+
+# Yuck - don't use this.
+depend:
+	@${MKDEP} $(INCLUDES) ${SOURCES} > .depend.tmp 
+	@sed -e '/^# DO NOT DELETE THIS LINE/,$$d' <Makefile >Makefile.depend
+	@echo '# DO NOT DELETE THIS LINE!!!' >>Makefile.depend
+	@echo '# make depend needs it.' >>Makefile.depend
+	@cat .depend.tmp >>Makefile.depend
+	@$(MV) Makefile.depend Makefile
+	@$(RM) -f .depend.tmp
+
+clean:
+	$(RM) -f *.o *~ $(HTTPD)
+
+distclean: clean
+	$(RM) -f Makefile
+
+.c.o:
+	$(CC) -DHTTPD_MODULE $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+dynamic: $(OBJECTS)
+	$(CC) $(PICFLAGS) $(MODFLAGS) -o $(HTTPD) $(OBJECTS)
+
+static: $(OBJECTS)
+	$(AR) rc $(HTTPD) $(OBJECTS)
+
+install:
+	@echo "Installing httpd"	
+	$(INSTALL) -d ${libdir}/tools
+	$(INSTALL) $(HTTPD) ${libdir}/tools
+
+uninstall:
+	@echo "Removing httpd"
+	${RM} -f ${libdir}/tools/$(HTTPD)
+
+makesums:
+	@echo "Creating .md5sums..."
+	@$(RM) -f .md5sums
+	@for i in $(SOURCES); do \
+		$(MD5SUMS) $$i >> .md5sums; \
+	done
+
+# DO NOT DELETE THIS LINE!!!
+# make depend needs it.

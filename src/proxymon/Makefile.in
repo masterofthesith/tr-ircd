@@ -1,0 +1,93 @@
+#
+# Makefile.in for trircd5
+#
+BN1             = tr
+BN2             = -ir
+BN3             = cd
+CC              = @CC@
+INSTALL         = @INSTALL@
+INSTALL_BIN     = @INSTALL_PROGRAM@
+INSTALL_DATA    = @INSTALL_DATA@
+INSTALL_SUID    = @INSTALL_PROGRAM@ -o root -m 4755
+RM              = @RM@
+LEX             = @LEX@
+AR              = @AR@
+RANLIB          = @RANLIB@
+MD5SUMS         = @MD5SUMS@
+LEXLIB          = @LEXLIB@
+CFLAGS          = @IRC_CFLAGS@ -DBASENAME=\"$(BN1)$(BN2)$(BN3)\" -DIRCD_PREFIX=\"@prefix@\"
+LDFLAGS         = @LDFLAGS@
+BITFLAGS	= @BITFLAGS@
+PICFLAGS        = @PICFLAGS@
+MODFLAGS        = @STATICFLAG@
+MKDEP           = @MKDEP@
+MV              = @MV@
+GREP		= @GREP@
+RM              = @RM@
+YACC            = @YACC@
+prefix          = @prefix@
+exec_prefix     = @exec_prefix@
+bindir          = @bindir@
+libexecdir      = @libexecdir@
+libdir          = @libdir@
+sysconfdir      = @sysconfdir@
+localstatedir   = @localstatedir@
+
+STATICLIBS	= @STATIC_LIBS@
+
+INCLUDES        = -I../../include @OPM_INCLUDES@
+CPPFLAGS        = ${INCLUDES} @CPPFLAGS@
+
+PMOND		= proxymon.so
+
+SOURCES = pm_callbacks.c pm_commands.c pm_init.c pm_main.c 
+
+OBJECTS = $(SOURCES:.c=.o)
+
+all: @MOD_TARGET@
+
+build: all
+
+# Yuck - don't use this.
+depend:
+	@${MKDEP} $(INCLUDES) ${SOURCES} > .depend.tmp 
+	@sed -e '/^# DO NOT DELETE THIS LINE/,$$d' <Makefile >Makefile.depend
+	@echo '# DO NOT DELETE THIS LINE!!!' >>Makefile.depend
+	@echo '# make depend needs it.' >>Makefile.depend
+	@cat .depend.tmp >>Makefile.depend
+	@$(MV) Makefile.depend Makefile
+	@$(RM) -f .depend.tmp
+
+clean:
+	$(RM) -f *.o *~ $(PMOND)
+
+distclean: clean
+	$(RM) -f Makefile
+
+.c.o:
+	$(CC) -DPROXYMON_MODULE $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+dynamic: $(OBJECTS)
+	$(CC) $(PICFLAGS) $(MODFLAGS) -o $(PMOND) $(OBJECTS)
+
+static: $(OBJECTS)
+	$(AR) rc $(PMOND) $(OBJECTS)
+
+install:
+	@echo "Installing Proxy Monitor based on LIBOPM"	
+	$(INSTALL) -d ${libdir}/tools
+	$(INSTALL) $(PMOND) ${libdir}/tools
+
+uninstall:
+	@echo "Removing proxy monitor"
+	${RM} -f ${libdir}/tools/$(PMOND)
+
+makesums:
+	@echo "Creating .md5sums..."
+	@$(RM) -f .md5sums
+	@for i in $(SOURCES); do \
+		$(MD5SUMS) $$i >> .md5sums; \
+	done
+
+# DO NOT DELETE THIS LINE!!!
+# make depend needs it.
