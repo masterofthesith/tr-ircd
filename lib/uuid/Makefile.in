@@ -1,0 +1,82 @@
+#
+# Makefile.in for trircd5
+#
+BN1             = tr
+BN2             = -ir
+BN3             = cd
+CC              = @CC@
+INSTALL         = @INSTALL@
+INSTALL_BIN     = @INSTALL_PROGRAM@
+INSTALL_DATA    = @INSTALL_DATA@
+INSTALL_SUID    = @INSTALL_PROGRAM@ -o root -m 4755
+RM              = @RM@
+LEX             = @LEX@
+AR              = @AR@
+RANLIB          = @RANLIB@
+MD5SUMS         = @MD5SUMS@
+LEXLIB          = @LEXLIB@
+CFLAGS          = @IRC_CFLAGS@ -DBASENAME=\"$(BN1)$(BN2)$(BN3)\" -DIRCD_PREFIX=\"@prefix@\"
+LDFLAGS         = @LDFLAGS@
+MKDEP           = @MKDEP@ -DBASENAME=\"$(BN1)$(BN2)$(BN3)\" -DIRCD_PREFIX=\"@prefix@\"
+MV              = @MV@
+RM              = @RM@
+YACC            = @YACC@
+prefix          = @prefix@
+exec_prefix     = @exec_prefix@
+bindir          = @bindir@
+libexecdir      = @libexecdir@
+sysconfdir      = @sysconfdir@
+localstatedir   = @localstatedir@
+
+PROGS           = @PROG_TOOLS@ converter.sh
+
+STATICLIBS      = @STATIC_LIBS@
+IRCDLIBS        = $(SUBDIRLIBS) $(STATICLIBS) $(LDFLAGS) @MODULES_LIBS@ @LIBS@ 
+
+INCLUDES        = -I../../include
+CPPFLAGS        = ${INCLUDES} @CPPFLAGS@
+
+SRC_0 = clear.c compare.c copy.c gen_uuid.c isnull.c pack.c parse.c unpack.c unparse.c uuid_time.c
+
+SOURCES = $(SRC_0)
+OBJECTS = $(SOURCES:.c=.o)
+
+all: library
+
+build: all
+
+depend:
+	@${MKDEP} $(INCLUDES) ${SOURCES} > .depend.tmp
+	@sed -e '/^# DO NOT DELETE THIS LINE/,$$d' <Makefile >Makefile.depend
+	@echo '# DO NOT DELETE THIS LINE!!!' >>Makefile.depend
+	@echo '# make depend needs it.' >>Makefile.depend
+	@cat .depend.tmp >>Makefile.depend
+	@$(MV) Makefile.depend Makefile
+	@$(RM) -f .depend.tmp
+
+library: $(OBJECTS)
+#	$(RM) -f ilibuuid.a
+#	$(AR) cqv ilibuuid.a $(OBJECTS)
+#	$(RANLIB) ilibuuid.a
+
+clean:
+	$(RM) -f *.a *.o *~ core
+
+distclean: clean
+	$(RM) -f Makefile
+
+.c.o:
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c $<
+
+install:
+
+makesums:
+	@echo "Creating .md5sums..."
+	@$(RM) -f .md5sums
+	@for i in $(SOURCES); do \
+		$(MD5SUMS) $$i >> .md5sums; \
+	done
+
+
+# DO NOT DELETE THIS LINE
+# make depend needs it.

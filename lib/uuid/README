@@ -1,0 +1,11 @@
+This package has been ripped of the libuuid from scrollkeeper.
+
+Libuuid in its most actual form is part from e2fsprogs, available
+at http://e2fsprogs.sourceforge.net
+
+Its being distributed indirectly, as far as we can understand,
+under the LGPL. So the license file has also been included.
+
+TR-IRCD Development (C) 2003
+
+# $Id: README,v 1.2 2003/06/14 13:55:51 tr-ircd Exp $

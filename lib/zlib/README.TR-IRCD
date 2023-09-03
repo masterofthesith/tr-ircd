@@ -1,0 +1,13 @@
+# $Id: README.TR-IRCD,v 1.2 2003/06/14 13:55:51 tr-ircd Exp $
+
+This library package has been directly copied from the zlib package,
+available at http://www.gzip.org/zlib.
+
+We did not include subdirectories, for they are not needed.
+
+We included this, to ensure that the compression library is
+linked and not optional.
+
+TR-IRCD Development Team 2003
+
+

@@ -1,0 +1,18 @@
+/ChangeLog/1.2/Sat Jun 14 13:55:51 2003//
+/LICENSE/1.2/Sat Jun 14 13:55:51 2003//
+/Makefile.in/1.2/Sat Jun 14 13:55:51 2003//
+/README/1.2/Sat Jun 14 13:55:51 2003//
+/clear.c/1.2/Sat Jun 14 13:55:51 2003//
+/compare.c/1.2/Sat Jun 14 13:55:51 2003//
+/copy.c/1.2/Sat Jun 14 13:55:51 2003//
+/gen_uuid.c/1.2/Sat Jun 14 13:55:51 2003//
+/isnull.c/1.2/Sat Jun 14 13:55:51 2003//
+/pack.c/1.2/Sat Jun 14 13:55:51 2003//
+/parse.c/1.2/Sat Jun 14 13:55:51 2003//
+/tst_uuid.c/1.2/Sat Jun 14 13:55:51 2003//
+/unpack.c/1.2/Sat Jun 14 13:55:51 2003//
+/unparse.c/1.2/Sat Jun 14 13:55:51 2003//
+/uuid.h/1.2/Sat Jun 14 13:55:51 2003//
+/uuidP.h/1.2/Sat Jun 14 13:55:51 2003//
+/uuid_time.c/1.2/Sat Jun 14 13:55:51 2003//
+D
