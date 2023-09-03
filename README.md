@@ -4,8 +4,8 @@
 ## Short installation information, for advanced users.
 
 Use the following commands:
-./configure --prefix=/destination/directory
-make install
+`./configure --prefix=/destination/directory`
+`make install`
 
 See the INSTALL document for info on configuring and compiling
 TR-IRCD.
