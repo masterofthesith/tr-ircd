@@ -1,0 +1,86 @@
+#
+# Makefile.in for trircd5
+#
+CC              = @CC@
+INSTALL         = @INSTALL@
+INSTALL_BIN     = @INSTALL_PROGRAM@
+INSTALL_DATA    = @INSTALL_DATA@
+INSTALL_SUID    = @INSTALL_PROGRAM@ -o root -m 4755
+RM              = @RM@
+LEX             = @LEX@
+AR              = @AR@
+RANLIB          = @RANLIB@
+MD5SUMS         = @MD5SUMS@
+LEXLIB          = @LEXLIB@
+CFLAGS          = @IRC_CFLAGS@ -DIRCD_PREFIX=\"@prefix@\"
+LDFLAGS         = @LDFLAGS@
+MKDEP           = @MKDEP@ -DIRCD_PREFIX=\"@prefix@\"
+MV              = @MV@
+RM              = @RM@
+YACC            = @YACC@
+PICFLAGS        = @PICFLAGS@
+prefix          = @prefix@
+exec_prefix     = @exec_prefix@
+bindir          = @bindir@
+libexecdir      = @libexecdir@
+libdir          = @libdir@
+sysconfdir      = @sysconfdir@
+localstatedir   = @localstatedir@
+includeinstall  = @includedir@
+
+IRCD_EXE        = @PROG_IRCD@          
+MD5SUM_EXE      = @PROG_MD5SUM@
+
+PROGS           = $(IRCD_EXE) $(MD5SUM_EXE)
+
+STATICLIBS      = @STATIC_LIBS@
+IRCDLIBS        = $(SUBDIRLIBS) $(STATICLIBS) @MODULES_LIBS@ @LIBS@ 
+
+INCLUDES        = -I../include  
+CPPFLAGS        = ${INCLUDES} @CPPFLAGS@
+MODFLAGS	= @STATICFLAG@
+
+INC_0 = blalloc.h capabflag.h chanmode.h channel.h class.h client.h cmodetab.h
+INC_1 = common.h comply.h config.h confitem.h debug.h defaults.h dh.h event.h
+INC_2 = fd.h fileio.h floodspam.h h.h hook.h hostmask.h identity.h init.h
+INC_3 = ircd_defs.h ircsprintf.h language.h linebuf.h listener.h logtype.h
+INC_4 = maskitem.h memory.h modules.h motditem.h msg.h msgtok1.h numeric.h
+INC_5 = optparse.h packet.h parse.h patchlevel.h protocol.h protodef.h proxy.h
+INC_6 = queue.h resnew.h s_auth.h s_bsd.h s_conf.h s_service.h s_user.h send.h
+INC_7 = struct.h supported.h sys.h sysvar.h throttle.h tools.h usermode.h zlink.h
+
+SOURCES = $(INC_0) $(INC_1) $(INC_2) $(INC_3) $(INC_4) $(INC_5) $(INC_6) $(INC_7)
+
+all:
+
+build:
+
+depend:
+
+distclean: 
+	$(RM) -f Makefile ircpath.h *.rej *.orig setup.h
+
+clean:
+
+install:
+	@echo "Installing includes"
+	$(INSTALL) -d ${includeinstall}
+	$(INSTALL) $(SOURCES) ${includeinstall}
+
+uninstall:
+	@echo "Removing includes"
+	@for i in $(SOURCES); do \
+		${RM} -f ${includeinstall}/$$i; \
+	done
+
+makesums:
+	@echo "Creating .md5sums..."
+	@$(RM) -f .md5sums
+	@for i in $(SOURCES); do \
+		$(MD5SUMS) $$i >> .md5sums; \
+	done
+
+.PHONY: depend clean distclean
+
+# DO NOT DELETE THIS LINE!!!
+# make depend needs it.
