@@ -1,0 +1,89 @@
+#
+# Makefile.in for trircd5
+#
+BN1             = tr
+BN2             = -ir
+BN3             = cd
+CC              = @CC@
+INSTALL         = @INSTALL@
+INSTALL_BIN     = @INSTALL_PROGRAM@
+INSTALL_DATA    = @INSTALL_DATA@
+INSTALL_SUID    = @INSTALL_PROGRAM@ -o root -m 4755
+RM              = @RM@
+LEX             = @LEX@
+AR              = @AR@
+RANLIB          = @RANLIB@
+MD5SUMS         = @MD5SUMS@
+LEXLIB          = @LEXLIB@
+CFLAGS          = @IRC_CFLAGS@ -DBASENAME=\"$(BN1)$(BN2)$(BN3)\" -DIRCD_PREFIX=\"@prefix@\"
+LDFLAGS         = @LDFLAGS@
+MKDEP           = @MKDEP@ -DBASENAME=\"$(BN1)$(BN2)$(BN3)\" -DIRCD_PREFIX=\"@prefix@\"
+MV              = @MV@
+RM              = @RM@
+YACC            = @YACC@
+AWK		= @AWK@
+prefix          = @prefix@
+exec_prefix     = @exec_prefix@
+bindir          = @bindir@
+libexecdir      = @libexecdir@
+libdir          = @libdir@
+sysconfdir      = @sysconfdir@
+localstatedir   = @localstatedir@
+
+IRCD_EXE        = @PROG_IRCD@          
+MD5SUM_EXE      = @PROG_MD5SUM@
+
+PROGS           = $(IRCD_EXE) $(MD5SUM_EXE)
+
+STATICLIBS      = @STATIC_LIBS@
+IRCDLIBS        = $(SUBDIRLIBS) $(STATICLIBS) @MODULES_LIBS@ @LIBS@ 
+
+INCLUDES        = -I../include  
+CPPFLAGS        = ${INCLUDES} @CPPFLAGS@
+
+LEXICOS = classes_lexer.l httpd_lexer.l ircd_lexer.l maskfile_lexer.l proxymon_lexer.l
+GRAMMAR = classes_parser.y httpd_parser.y ircd_parser.y maskfile_parser.y proxymon_parser.y
+
+SSRCS_0 = classes_parser.c httpd_parser.c ircd_parser.c maskfile_parser.c proxymon_parser.c 
+SSRCS_1 = classes_lexer.c httpd_lexer.c ircd_lexer.c maskfile_lexer.c proxymon_lexer.c
+SSRCS_2 = config.c dumpconf.c
+
+SOURCES = $(SSRCS_0) $(SSRCS_1) $(SSRCS_2)
+
+SCANNER = $(LEXICOS:.l=.c)
+PARSERS = $(GRAMMAR:.y=.c)
+OBJECTS = $(SOURCES:.c=.o)
+
+all: config.a
+
+build: all
+
+depend:
+
+clean:
+	$(RM) -f *.o *~ *.tab.* lex.* *parser.c *.h *lexer.c *.a *.lo
+
+distclean: clean         
+	$(RM) -f Makefile
+
+.SUFFIXES: .lo
+
+.l.c:
+	${LEX} -i -o$@ -P`echo "$@" | awk -F_ {'print $$1'}` $<
+.y.c:
+	${YACC} -d $< -o $@ -p `echo "$@" | awk -F_ {'print $$1'}`
+
+.c.o:
+	${CC} ${CFLAGS} $(INCLUDES) -I. -c $< -o $@
+
+config.a: $(OBJECTS)    
+	$(AR) rcv $@ $(OBJECTS)
+	$(RANLIB) $@
+
+install: build
+
+.PHONY: depend clean distclean
+
+# DO NOT DELETE THIS LINE!!!        
+# make depend needs it.    
+
