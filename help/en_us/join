@@ -1,0 +1,12 @@
+JOIN <channel[,channel,...]> [key[,key,...]] [0]
+
+This command makes you to join the given channel, or
+multiple channels. If they have keys set, you should
+give the key, or the keys as the second parameter.
+
+Multiple channel names, or keys are seperated with
+commata.
+
+If you /join 0
+then you will PART all the channels you currently are in.
+

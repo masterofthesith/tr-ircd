@@ -1,0 +1,18 @@
+SET <command> <parameters>
+
+This operator command allows the re-setting of some
+of the server options on the fly.
+
+MAX <amount> : Will set the maximum number of allowed
+connections to the new value.  
+KILLNOIDENT <on|off> : Will enforce disallowing the
+connection of identless clients.
+SPAMNUM/SPAMTIME : Will define the number of joinparts,
+and the duration during which these may happen, before
+the server will ignore the user because of a possible 
+spambot.
+DEBUG : Will set the debug level.
+THROTTLE : Will set throttle settings.
+For more information, use the /quote set
+command.
+

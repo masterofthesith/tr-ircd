@@ -1,0 +1,63 @@
+STATS <type> [nickname|servername]
+
+Queries the given nickname's server, or the given
+server, or the local server with the given type.
+
+Type can be:
+
+? server information
+A autokill list
+B dcc block list
+C connect block list
+D memory usage
+E exclude list
+F file descriptor list
+G g:line list
+H hub list
+I auth block list
+J jupiter list
+K k:line list
+L LogEvent Dump
+M command usage
+N network statistics
+O opered users
+P ports
+Q Q:lines
+R redirect lines
+S connected services
+T server statistics
+U ulined servers
+V more server information
+W - unused
+X event dump
+Y classes
+Z szline list
+
+a autokill list
+b memory usage information
+c used connect blocks
+d memory usage
+e exception auth blocks
+f file descriptor list
+g sgline list
+h hook list
+i auth block list
+j services jupiters
+k temporary kline list
+l link information
+m command usage
+n network statistics
+o operator blocks
+p protocol type
+q sqline list
+r redirect lines
+s service blocks
+t throttled hosts
+u uptime
+v autoconnect auth blocks
+w - unused
+x event dump
+y classes
+z szline list
+
+~ Configured dns server list

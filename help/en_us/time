@@ -1,0 +1,5 @@
+TIME [nickname|servername]
+
+Displays the time of the nickname's server or the servername.
+If used without parameters, the local server time.
+

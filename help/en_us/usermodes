@@ -1,0 +1,19 @@
+The list of available usermodes:
+
+a: services admin, allowed to /samode
+A: server admin, allowed to use /mod*
+c: no color in private messages
+C: no ctcp in private messages
+h: user is a helpop
+H: user can see hidden things (ip, secret channels...)
+i: the user is invisible
+n: Routing notice messages
+o: operator, allowed to /kill,/kline,/gline
+p: hide idle time in /whois
+P: do not receive any privmsg/notice except when /accept is used
+r: registered
+R: the user does not want to get messages from unregistered users
+w: channels are hidden in /whois
+x: the user hides their hostname
+t: Translation mode (greek to greeklish)
+z: Dccallow all users

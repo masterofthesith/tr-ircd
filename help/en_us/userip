@@ -1,0 +1,4 @@
+USERIP <nick>
+
+Displays the given nicks username, ip, away status,                     
+operator status and real name in one single line.

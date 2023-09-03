@@ -1,0 +1,24 @@
+OPERDO <help|mode|kick|topic|join> <channel> [parameters]
+
+This operator only command can be used to override
+some of the settings in the channel, without having
+required channel privileges.
+
+Examples:
+
+/operdo MODE #test +m
+
+Will set the channel #test +m.
+
+/operdo KICK #test Lamer :out!
+
+Will kick the user Lamer from the channel #test.
+
+/operdo JOIN #test +o TheOne
+
+Will make you join #test and set +o to TheOne.
+If TheOne is your nick, then you get channelop status.
+This may be useful, if a channel is taken over, and
+you want to see what is happening in it.
+Then you can /operdo join #test +oa yournick yournick
+

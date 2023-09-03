@@ -1,0 +1,17 @@
+The ircd incorporates the following local channels to help operators administering.
+
+&NOTICE         "Server notices - former umode +s"      user-joinable
+&SNOTICE        "Server notices - former umode +so"     oper-only
+&CONNECTS       "Clients connecting and exiting"        oper-only       (old +c mode)
+&REJECTS        "Rejected connections"                  oper-only
+&KILLS          "Server Kills"                          oper-only       (old +k mode)
+&KLINES         "Kill Lines"                            oper-only	
+&QLINES         "Rejected quarantined nicknames"        oper-only
+&STATS          "Issued server query commands"          oper-only       (old +y mode)
+&DCCSEND        "Blocked dcc sends"                     oper-only       (old +m mode)
+&FLOOD          "Flood notices"                         oper-only       (old +f mode)
+&SPAMBOT        "Possible Spambots"                     oper-only       (old +e mode)
+&DEBUG          "Debug information notices"             oper-only       (old +d mode)
+&SERVICES       "Notices about connecting services"     oper-only
+&PROXYMON       "Notices from the Proxy Scan Monitor"   oper-only
+

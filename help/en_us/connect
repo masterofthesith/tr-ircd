@@ -1,0 +1,6 @@
+CONNECT [*|servername][port][servername]
+
+Operator command causing this server or a remote
+server connect to the given port of the given
+servername.
+ 

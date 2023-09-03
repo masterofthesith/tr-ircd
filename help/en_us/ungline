@@ -1,0 +1,6 @@
+UNGLINE
+
+Will globally remove the kline from the given mask.
+For more information, use
+/quote help unkline
+

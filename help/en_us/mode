@@ -1,0 +1,7 @@
+MODE <user|channel> <parameters>
+
+Changes the mode of the given user with those parameters.
+For a detailed description of the usermodes and the
+channelmodes use the following commands.
+/quote help usermodes
+/quote help channelmodes

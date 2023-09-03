@@ -1,0 +1,14 @@
+HASH [server|nick] <item>
+
+Shows information about the given item on the local or
+remote server.
+Available items are:
+ULIMIT - To show 'ulimit -a' information
+UNAME - To show 'uname -a' information
+SYSTEM - To show md5sums of files under src/ directory
+SERVER - To show md5sums of files under server/ directory
+MODULES - To show md5sums of files under modules/ directory
+CMODES - To show md5sums of files under chanmdoes/ directory
+PROTOCOL - To show md5sums of files under protocol/ directory
+INCLUDES - To show md5sums of files under include/ directory
+LOGSYSTEM - To show md5sums of files under src/logsystem/ directory

@@ -1,0 +1,9 @@
+SILENCE [+mask][-mask]
+
++ adds the given mask to your silence list.
+- removes the given mask from your silence list.
+If used without parameters, your actual silence list
+is displayed.
+
+A silenced mask cannot send any types of messages to you.
+

@@ -1,0 +1,9 @@
+ACCEPT [list|+nickname|-nickname]
+
+ACCEPT command controls your private list of users
+who are allowed to send messages to you.
++/- nickname as parameter will cause the addition
+or the removal of the given nickname from this list.
+The list parameter will display your actual list
+of accepted users.
+

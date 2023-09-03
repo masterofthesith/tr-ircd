@@ -1,0 +1,6 @@
+PASS <password>
+
+Used in the beginning of a irc session, to allow you
+to connect to the server, if the matchin auth { } block
+requires a connection password.
+

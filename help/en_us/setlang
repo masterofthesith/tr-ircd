@@ -1,0 +1,5 @@
+SETLANG <list|name>
+
+Will display a list of available languages, or set your
+reply language to the "name"
+

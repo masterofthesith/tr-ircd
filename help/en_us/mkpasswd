@@ -1,0 +1,4 @@
+MKPASSWD <plaintext>
+
+Creates a md5 hash of the given text.
+

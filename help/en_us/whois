@@ -1,0 +1,6 @@
+WHOIS [nickname|servername] <nickname>
+
+Gives whois information of the given nickname.
+If additional parameters are supplied, their
+server, or the given server is queried.
+

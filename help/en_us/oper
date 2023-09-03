@@ -1,0 +1,8 @@
+OPER <username> <password>
+
+If supplied with a correct username/password pair,
+you get oper'ed, and have elevated privileges.
+The host you come from, and also the username and
+password must match to those on the corresponding
+operator { } block in the server config file.
+

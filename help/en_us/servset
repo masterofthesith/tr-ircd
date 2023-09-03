@@ -1,0 +1,5 @@
+SERVSET - Interservice protocol command
+
+Informs the local server about the different type
+of actions the service is willing to receive.
+

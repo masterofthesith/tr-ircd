@@ -1,0 +1,5 @@
+GLOBOPS <text>
+
+Operator command causing a text to be sent to all
+online operators.
+

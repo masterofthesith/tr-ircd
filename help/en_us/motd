@@ -1,0 +1,6 @@
+MOTD [nickname|servername]
+
+Displays the message of the day of the given 
+nickname's server, or the servername. If no 
+parameter is given, the motd of the local 
+server is displayed.

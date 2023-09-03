@@ -1,0 +1,5 @@
+SQUIT [servername]
+
+This operator command will remove the given server from the
+network. If used without parameters, you will be disconnected.
+

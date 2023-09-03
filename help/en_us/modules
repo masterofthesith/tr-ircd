@@ -1,0 +1,11 @@
+MODULES - Interactive module management
+
+There are 5 Admin Only commands, to invoke the
+module management system
+
+MODLOAD <module> : to load the specified module
+MODUNLOAD <module> : to remove the specified module
+MODLIST : list all loaded modules
+MODRESTART : restart the module loading sequence
+MODRELOAD <module> : reload the specified module
+

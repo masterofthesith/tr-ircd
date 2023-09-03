@@ -1,0 +1,4 @@
+PING [target]
+
+Sends a irc ping to the target.
+

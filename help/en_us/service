@@ -1,0 +1,7 @@
+SERVICE - Interserver protocol command
+
+If used in connection state, it tells the server
+that the remote side is  service.
+If received from a server, it tells, that the remote
+server will introduce a new service to the network.
+

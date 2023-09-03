@@ -1,0 +1,10 @@
+KLINE [duration] <nick|user@host> <reason>
+
+This operator command will place a Kill Line
+onto the given users hostname, or the given
+user@host mask. 
+
+The Kill Line will remain a
+default of a 30 minutes, or any other time 
+value supplied with the duration parameter.
+

@@ -1,0 +1,5 @@
+BURST - Interserver protocol command
+
+Informs a server about the start and end of 
+netjoin bursts.
+

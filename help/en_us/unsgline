@@ -1,0 +1,6 @@
+UNSGLINE - Interserv protocol command
+
+Sglines are like klines, but they prevent users
+from a certain gcos field (realname) from connecting.
+Unsgline removes a sgline mask.
+

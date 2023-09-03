@@ -1,0 +1,5 @@
+DKEY - Interserver protocol command
+
+This command controls the different states of
+Diffie Hellman key exchange protocol.
+

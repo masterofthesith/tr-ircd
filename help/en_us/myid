@@ -1,0 +1,4 @@
+MYID - Interserver protocol command
+
+Sends the ID to the remote server.
+

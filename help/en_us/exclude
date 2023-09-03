@@ -1,0 +1,6 @@
+EXCLUDE - Interserver protocol command
+
+Exclude is the counterpart of akill.
+user@host masks that are excluded do not suffer
+from the effects of autokills.
+

@@ -1,0 +1,6 @@
+PART <channel[,channel,...]> [text]
+
+This command causes you to leave the given channel
+or the given channels. The text can be shown to the
+channel when parting.
+

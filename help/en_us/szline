@@ -1,0 +1,5 @@
+SZLINE - Interserver protocol command
+
+Szlines are global z:lines. A zlined IP
+cannot connect to a server.
+

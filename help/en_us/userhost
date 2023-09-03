@@ -1,0 +1,5 @@
+USERHOST <nick>
+
+Displays the given nicks username, hostname, away status, 
+operator status and real name in one single line.
+

@@ -1,0 +1,5 @@
+AWAY [reason]
+
+If used with a reason, this will mark you as being away.
+To return to the normal state, use it without reason.
+

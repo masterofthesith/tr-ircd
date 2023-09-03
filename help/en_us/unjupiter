@@ -1,0 +1,6 @@
+UNJUPITER - Interserver protocol command
+
+A Jupiter will prevent any non-opers from joining
+a specific channel mask.
+Unjupiter will remove this mask.
+

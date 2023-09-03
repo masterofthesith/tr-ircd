@@ -1,0 +1,5 @@
+USER - Protocol command
+
+Used by clients to give additional information about
+the connecting client.
+This information contains the username and realname fields.

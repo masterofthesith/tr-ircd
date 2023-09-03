@@ -1,0 +1,5 @@
+TOPIC <channel> [text]
+
+If used with a text, it changes the topic of the given
+channel. If used without text, the actual topic is shown.
+

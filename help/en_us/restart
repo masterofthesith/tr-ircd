@@ -1,0 +1,4 @@
+RESTART [password]
+
+Causes the server to restart.
+

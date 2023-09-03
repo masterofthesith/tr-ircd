@@ -1,0 +1,14 @@
+REXCOM <+|-> <K|k|Q|q|G|g|J|j> <mask> <reason>
+
+This operator command can be used to activate regex
+based bans for
+
+K: Kill Lining
+Q: Quarantining
+G: Banning the Realname field
+J: Jupitering channels
+
+This kind of masks are persistent.
+
+All of the fields are required.
+

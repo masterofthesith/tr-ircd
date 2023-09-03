@@ -1,0 +1,6 @@
+GNOTICE - Interserver protocol command
+
+This command causes a text to be sent to all online
+operators. The difference is, that only servers are
+allowed to generate global notices.
+

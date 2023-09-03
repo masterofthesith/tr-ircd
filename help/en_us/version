@@ -1,0 +1,26 @@
+VERSION [nickname|servername]
+
+Displays version information about the nickname's server,
+or the servername. If no parameter is given, the local
+server is queried.
+
+Following Letters may appear in the /version output.
+TS7 : Meaning that this is a TS5 capable TRIRCD Server
+Z   : Means that connection compression (zipped links) is defined.
+E   : Means that connection encryption (encrypted links) is defined.
+6   : Means that IPv6 Support is active.
+G   : Means that Usermode +t (translation) mode for Greeklish is active.
+SM  : Means that the ircd uses statically compiled modules.
+DM  : Means that the ircd uses dynamic modules.
+NB  : Means that the block heap allocator is disabled.
+B   : Means that the block heap allocator is enabled.
+SN  : Means that small network support is active.
+NN  : Means that small network support is inactive.
+
+The ircd uses following alternative functions within the select loop:
+poll 
+select 
+sigio 
+devpoll 
+kqueue
+

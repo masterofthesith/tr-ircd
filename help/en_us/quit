@@ -1,0 +1,6 @@
+QUIT [text]
+
+Disconnects your irc session. If a message is supplied,
+it will be sent to all channels you have been in, in case
+you can send to those.
+

@@ -1,0 +1,20 @@
+DCCALLOW [list|+nickname|-nickname]
+
+DCCALLOW command controls your private list of users
+who are allowed to send dcc commands to you.
++/- nickname as parameter will cause the addition
+or the removal of the given nickname from this list.
+The list parameter will display your actual list
+of dcc allowed users.
+
+You may allow DCCs of filetypes which are otherwise blocked by the IRC server
+by specifying a DCC allow for the user you want to recieve files from.
+For instance, to allow the user bob to send you file.exe, you would type:
+/dccallow +bob
+and bob would then be able to send you files. bob will have to resend the file
+if the server gave him an error message before you added him to your allow list.
+/dccallow -bob
+Will do the exact opposite, removing him from your dcc allow list.
+/dccallow list
+Will list the users currently on your dcc allow list.
+

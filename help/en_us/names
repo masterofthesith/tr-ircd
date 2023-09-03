@@ -1,0 +1,7 @@
+NAMES <channel>
+
+Displays a list of nicks in the given channel.
+Channeluser flags like op/voice are prepended to
+the names of the users with their appropriate
+symbols.
+

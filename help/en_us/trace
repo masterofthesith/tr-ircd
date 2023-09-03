@@ -1,0 +1,4 @@
+TRACE [nickname|servername]
+
+Displays useful information about the nickname or the servername.
+

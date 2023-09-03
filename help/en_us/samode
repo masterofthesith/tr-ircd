@@ -1,0 +1,6 @@
+SAMODE <channel> <parameters>
+
+Sets the MODE of the given channel to those given in the
+parameters. Only operators with services admin privileges
+are allowed to use samode.
+

@@ -1,0 +1,4 @@
+SQUERY <target service> <text>
+
+Squery command sends the given text to the target service.
+

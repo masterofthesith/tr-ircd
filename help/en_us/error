@@ -1,0 +1,4 @@
+ERROR - Error handling protocol command
+
+Servers generate this command to warn about errors.
+

@@ -1,0 +1,7 @@
+ADMIN [nickname|servername]
+
+Displays administrative information about the
+given nickname's server or the server.
+If used without parameters, administrative
+information about the local server is
+displayed.

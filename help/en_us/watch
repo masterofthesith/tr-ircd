@@ -1,0 +1,9 @@
+WATCH [C/c][L][l][S/s][nicknames]
+
+Used by clients, as a ison replacement.
+This command will clear your notify list,
+add new nicks to it, remove nicks from it,
+and show your notify list. If a nickname
+becomes online, you are informed, and as
+well if they become offline.
+

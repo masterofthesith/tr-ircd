@@ -1,0 +1,6 @@
+WALLOPS <text>
+
+This operator command sends a wallops message 
+to all connected users in this server. This is
+done regardless of the fact, if a user is +w.
+

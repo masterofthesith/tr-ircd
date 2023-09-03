@@ -1,0 +1,10 @@
+LIST [mask]
+
+Displays a list of channels, the number of users in them
+and also their topic.
+If a mask is supplied, only channels matchin the mask will
+be shown.
+For a detailed info about the /list, use the
+/list ?
+command.
+

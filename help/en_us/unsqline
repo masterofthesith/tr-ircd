@@ -1,0 +1,6 @@
+UNSQLINE - Interserver protocol command
+
+A Sqline is a mask, to which a user cannot
+change their nick.
+Unsqline removes that mask from the network.
+

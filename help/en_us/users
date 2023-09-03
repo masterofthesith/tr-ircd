@@ -1,0 +1,6 @@
+USERS [nickname|servername]
+
+Displays the amount of online users, and max amount ot
+online users in the server, and globally in the network.
+If no parameter given, the local server is queried.
+

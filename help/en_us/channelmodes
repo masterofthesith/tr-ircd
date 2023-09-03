@@ -1,0 +1,37 @@
+The list of available channelmodes:
+
+a: protect, the user is kick protected
+b: ban mask
+c: no colors are accepted
+C: no ctcp/dcc/action text allowed
+d: hide quit/part reason messages
+e: ban exception mask
+f: flood protection lines:in time format
+g: only registered nicks can send to a channel
+h: halfop, a user allowed to mode a little, and kick
+i: invite only channel
+I: invite exception mask
+j: /names and /who can only be used by channel members.
+J: join delay in number of seconds
+k: channel key, required on join
+K: no knock in channel
+l: limit, number of maximum users allowed
+L: channel is linked to the given channel (name is an alias)
+m: moderated, only +uaohv users are allowed to talk
+M: moderation based on hostmasks
+N: no users with unresolved ips are allowed to join
+n: no messages from outside
+o: channel operator
+O: oper only channel
+p: private channel, hidden in /list
+q: quiet channel, only used in server owned channels
+r: registered channel
+R: a channel which can only be used by registered nicks
+s: secret channel, hidden in /whois
+t: /topic only by ops (+o)
+T: /topic only by protected (+a)
+u: channel owner, kick and deop protected
+v: voiced users
+w: disable wordfilters in a channel
+x: hide ops in channel
+z: a channelname, from which no user can join this channel (zapped channel)

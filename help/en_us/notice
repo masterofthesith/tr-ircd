@@ -1,0 +1,4 @@
+NOTICE <target> <text>
+
+Sends the given text to the given target.
+The target can be either a person, or a channel.

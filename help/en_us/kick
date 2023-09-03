@@ -1,0 +1,9 @@
+KICK <channel> <nick[,nick,...]> [reason]
+
+A kick command causes the given nickname, or
+multiple nicknames from being kicked off the
+given channelname with the given reason.
+
+If no reason is specified, the name of the
+user originating the kick is used.
+

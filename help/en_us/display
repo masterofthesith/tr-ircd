@@ -1,0 +1,7 @@
+DISPLAY <password> <section>
+
+Displays the given section of the server config file.
+You have to supply the password, which has been set
+in the displaypass directive of the ServerInfo 
+section.
+

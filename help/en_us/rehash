@@ -1,0 +1,24 @@
+REHASH [item]
+
+Causes the local server to reread its configuration file.
+If a parameter is supplied, only the action specified by
+the parameter is taken.
+Parameters are:
+DNS - Restarts the resolved
+SZLINES - Removes the temporary zlines
+TKLINES - Removes the temporary klines
+GC - Does a garbage collecting
+MOTD - Rereads the motd file
+LINKS - Rereads the links file
+IP - Rehashes the ip hash table
+AKILLS - Removes all temporary autokills
+EXCLUDES - Removes all autokill exclusions
+JUPITERS - Removes all jupiter definitions
+SQLINES - Removed all sqlines
+SGLINES - Removes all sglines
+SZLINES - Removes all szlines
+TEMPMASKS - Removes all temporary maskitems
+PERSMASKS - Removes all persistent maskitems (read from config files)
+WRITECONF - Writes down server configuration
+THROTTLES - Removes all hosts from the throttle list
+ALL - Does all of the above
