@@ -1,0 +1,58 @@
+# $Id: RELNOTES,v 1.6 2003/08/12 10:22:19 tr-ircd Exp $ #
+
+Notes:
+
+1) ZLINE has been removed. The only way to have the effect is the usage 
+of SZLINEs. Zaplines are supported via maskfile configuration.
+
+2) SQLINE does no longer cover channel names. Use JUPITER instead. If 
+your services software does not support JUPITERs, then you should set 
+no_oper_jupiter to no, and allow operators to /jupiter.
+
+3) Channelmode modules are not designed to be unloaded. Its possible 
+that flag based modules can be unloaded, but modules that manage lists 
+should not since this will cause heavy desynchs. Therefore this feature 
+will not be implemented.
+
+4) If you compile the ircd as a static build, you will no longer have an 
+option to compile the contributional modules. If you want to use them, 
+add them into modules/ or use shared module system.
+
+5) The ircd cannot be profiled anymore, since profiling functionality 
+does not work with posix threads. Its simply too much to do, if we would 
+change the posix thread architecture to enable profiling. So this is now 
+postponed until better profiling utilities other than gprof become 
+available.
+
+6) For small networks, there now is a runtime option to the binary:
+--smallnet or -s
+Which optimizes memory usage.
+
+7) TR-IRCD Contains GNU regex library.
+This is mainly used for the new REXCOM command, as it does use regular 
+expressions. The REXCOM Command currently can be used to kline, 
+quarantine, gecos-ban, jupiter. On all the cases regex matching is used.
+
+This Operation is CPU Intensive. Please do not active this, if your 
+machine is slow.
+
+8) The usermode +P, disabling of private messages is used in conjuction 
+with the /accept command, which manages 4 different double linked lists.
+This management is cpu intensive.
+
+9) Do not use kline or similar commands on faked hostnames, they 
+will definitely not work.
+
+10) TR-IRCD 5.5 includes new channelmodes which do not exist on trircd 5.1
+Do not activate them, if you consider linking to older servers, or you will
+have a strange effect.
+
+11) /restart command is now deprecated, since it cannot be used properly.
+A bug in the GNU C Library Versions up to 2.3.2 prevent threads from being
+exited properly leading to an endless loop when calling execve(). Therefore,
+we suggest not using /restart. For those who still need it, it has been
+moved to the contrib directory.
+
+12) floodcontrol has now vanished from the configuration, since it did not
+work correctly and a correct flood control mechanism cannot be easily 
+implemented. The floodmode +f still remains.

@@ -1,0 +1,1374 @@
+.r 5.9.5-enhanced
+01.01.2023
+.  Upgrade system new technologies.
+04.01.2006
+.  Fixed issues with the new hashing system. Some functions were still using
+   the older system.
+25.12.2005
+.  Fixed problems with md5 hashes causing crashes by starttime
+	Noted by Joe Tomasone
+14.12.2005
+.  Stole the new hashing system from ircd-hybrid 7.2.0
+30.09.2005
+.  Fix adns to use in-addr.arpa instead of in-addr.int in IPv6 resolving
+ 	Fixed by Marc A. Donges
+19.06.2005
+.  Changed send_quit_to_common_channels to eradicated +d bugs
+
+.r 5.7.3-r
+18.01.2005
+.  Additions to the turkish language file
+.  Fixes in Makefile system
+25.12.2004
+.  Fixed buggy module unloading routine.
+	Noted by Michael Wobst
+29.11.2004
+.  Added new turkish language help files and numeric file
+	Provided by Okan, tekLAN
+.  Changed the way the ircd interprets the CAPAB NICKIP line.
+
+18.09.2004
+.  Changed time format to ISO 8601 date format. 
+	Spotted by Marc A. Donges
+23.07.2004
+.  Added missing ranlib calls into some Makefiles
+12.07.2004
+.  Fixed heavy bug inside s_packet.c/parse.c causing data to be parsed of
+   already exited clients.
+24.06.2004
+.  Removed the staff_fakehost directive, since its existence has been
+   overruled by the spoof directives inside auth blocks and that entry
+   does never get really used.
+
+.r 5.7-r
+02.06.2004
+
+.r 5.7-rc1
+04.03.2004
+.  Fixed bug in s_kline.c about NULL klines.
+	Reported by Emre Erol
+28.02.2004
+.  Fix outputin +J error message
+.  Fix expiration issue in maskfile.conf maskitems
+.  Made away messages get hooked into wordfilter hooks.
+.  Made wordfilter hooks TeKLAN savvy.
+24.02.2004
+.  Added support for linux eventpoll (epoll), may be activated on
+   configure time; requires a kernel of 2.6.x series.
+.  Fixed non-expiring maskitem issue. Added the "forgotten" 
+   expire_maskitem call :P
+.  Added the KNOCK command
+.  Removed all references to native/compatible protocols. The server
+   does only run in native mode.
+.  Added chanmode +K: noknock
+.  Removed support for settime/gettime (undocumented feature)
+.  Ensured that dependent module loading works
+.  Fixed some problems in m_svinfo when using time_t with %d in printf.
+.  Removed configuration directives for several usermodes and channelmodes
+   These are automagically enabled always. The complexity when linking
+   servers and mutually checking what is enabled and what is not was
+   simply too much.
+.  Removed some other senseless configuration directives
+.  Added chanmode +J: join delay in seconds
+
+.non-release 5.5.5
+07.11.2003
+.  Changed MAXMODEPARAMS to MAXPARA - 3, because of compatibility 
+   problems within TMODE and MODE
+31.10.2003
+.  Fixed bug in TMODE parsing causing modes to be forgotten.
+
+.r 5.5.3
+31.10.2003
+.  Fixed bugs regarding inconsistent +Tn issues.
+27.10.2003
+.  Added IDENTCOMPLAIN option to the /set command
+14.08.2003
+.  About to fix the problem with long channelnames in combination
+   with channelmode +z
+	Reported by Burak Sütuna
+.r 5.5.1
+12.08.2003
+.  Fixed bug in check_dccsend causing crashes.
+10.08.2003
+.  Fixed bug in m_message when no_messages_on_away is set.
+	Reported by Emre Erol
+.  Fixed bug in ircsprintf/Iprintf_maskitem - Was totally senseless
+	Caused multiple (NULL)s in server linkage.
+26.07.2003
+.  Problems with the mode command reflecting to the origin solved.
+.  Specificity problems regarding the order of the auth entries when
+   the server config file is being generated (dumpconf()) has been solved.
+	Reported by: eggy <eggy@neostats.net>
+.  Implemented no-messages-on-away feature, if set on config file,
+   users who are marked as away cannot send PRIVMSG/NOTICE
+25.07.2003
+.  Separation of m_kill and s_kill; bug about services not being
+   able to kill pointed out by:
+	Cem Yegin
+23.07.2003
+.  Added configuration option visible_serverchannels to configure
+   visibility for the server owned channels (&*)
+.  Fixed bug in operator adding via the web interface
+	Reported by Emre Erol and Christopher Beer
+19.07.2003
+.  For testing purposes, dead_link_on_write now does not directly
+   exit clients, but mark them as DEAD so that check_pings() does 
+   care for their exit. Currently this seems to have solved the issue
+   regarding failure in send() when too many clones suddenly exit.
+17.07.2003
+.  Fixed channelname checker routine, to really check channelnames
+   provided in the charattr table
+	Reported by Trickser <Trickser@earthling.net>
+16.07.2003
+.  Did code cleaning in sento_lev calls.
+15.07.2003
+.  Redid the old kline behavior, when no time was given
+.  Fixed bugs in remove_accept_references
+13.07.2003
+.  Bug in kline checker fixed
+
+.r 5.5
+10.07.2003
+.  Fixed fatal bug in clean_nick_name() allowing empty nicknames.
+03.07.2003
+.  Added new config file option "default_extended_topic_limitation"
+   which allows disabling of default +T mode in channels, setting
+   the default back to +tn.
+.  Added new usermode to generally allow all dcc connections, 
+   without being limited by dccallow functions. Fixed odd help about this.
+	Suggested by Trickser <Trickser@earthling.net>
+02.07.2003
+.  Added checks for MASKITEM_*_CONFIG into the appropriate places.
+.  Added pidfile in the files section of ircd.conf to set a 
+   non-default path/filename for the ircd pidfile.
+        Suggested by Patrick Stahlberg
+01.07.2003
+.  Inconsistencies with FreeBSD have been solved.
+.  Redesigned ~UMODE_r behavior.
+29.06.2003
+.  Several small bugs fixed. Especially those in wordfilter.
+.  Adjusted some abuseable oper privileges in /who as SeeHidden
+.  Fixed not working mode -o
+	Reported by Cem Türk
+27.06.2003
+.  Made the restart command contributional and deprecated, since
+   it is not working with some glibc versions, but does work
+   as intended with Native Posix Threads Library
+16.06.2003
+.  Fixed bugs in m_mode and check_accept
+14.06.2003
+.  Fixed not working kline on connection time issue.
+12.06.2003
+.  Added routines to cleanly exit threadded modules
+   and the loader thread before server_reboot() finishes.
+09.06.2003
+.  Fixed bug in wordfilter, a newline was missing.
+	Reported by Emre Erol
+.  Fixed bug in md5sum detection in configure
+.  Fixed configure to ensure that only our installation
+   script is used.
+.  Fixed buggy prototypes in configure.
+05.06.2003
+.  Fixed daemonizing with information based on
+   http://www.erlenstar.demon.co.uk/unix/faq_2.html#SEC16
+	Reported by Marc Donges & Christoph Heine
+
+.rc1
+04.06.2003
+.  Rewrote the mode handling routine m_mode(), and cleaned out 
+   inconsistencies which happen when modes other hand single
+   lettered ones are used, when remote servers did not support
+   the chanlink capability.
+02.06.2003
+.  Removed scache
+.  Ensured that pointers to scache interna are handled correctly.
+01.06.2003
+.  Fixed bugs in can_join hooks.
+.  Fixed missing free() in logevent_unregister().
+.  Fixed memory leaks about the module loader and the usage of
+   irc_basename
+31.05.2003
+.  Fixed missing checks in register_local_user causing continuation
+   of processing on an exited client.
+	Reported by Christopher Beer
+25.05.2003
+.  Fixed bugs in the modload/modunload empty parameter parsing.
+21.05.2003
+.  Ensured that REHASH does not make httpd unresponsive.
+17.05.2003
+.  Fixed evil exit_client issue in s_user.c causing the parts of the
+   user structure to be still read even though the client has already
+   been exited, causing multiple inconsistencies and other several
+   problems.
+	Reported by Christopher Beer
+12.05.2003
+.  Redid the install_data routines to install as 0644.
+	Reported by Christoph Heine.
+.  Fixed typo in src/usermodes.c about the +x mode.
+.  Corrected the AUTHORS file.
+11.05.2003
+.  Fixed buggy ungline/gline/kline/unkline combination
+	Reported by Oguz Acikgöz 
+.  Rewrote the split detection mechanism.
+08.05.2003
+.  Removed PFLAGS_CHOOSE_FAKEHOST as it was proven to be unnecessary.
+.  Finished adding 'can_choose_fakehost' in the auth{} blocks in the http
+   interface.
+.  Fixed bugs in maskitem generation routines with corrupt services
+   versions.
+        Both reported by Emre Erol.
+07.05.2003
+.  Removed 'ServerOpts.opers_can_choose_fakehost' and added it into the auth{} 
+   directive as 'can_choose_fakehost'. Did appropriate changes into the code. 
+   Still have to do changes in the http interface.
+06.05.2003
+.  Fixed bugs with configuration files, which caused classes to be
+   invalid on rehash.
+.  Added a small parser for a badword.list file located in etc,
+   where the badwords added are stored, and where they will be
+   read on runtime.
+05.05.2003
+.  Removed ip hash
+04.05.2003
+.  Added an option to the config file about deactivating the
+   usermode +P.
+03.05.2003
+.  Finalized /accept and the appropriate usermode extension.
+30.04.2003
+.  Began doing /accept and friends
+
+.pre1 
+29.04.2003
+.  Fixed bugs in SVINFO TIME, was being sent too late.
+25.04.2003
+.  Fixed interproc close behavior, as spotted by Talesin
+21.04.2003
+.  Did small changes in squit.
+.  Removed --enable-ipv6 from configure, ipv6 is now automatically detected
+.  Added -m/--maxclients runtime option to the ircd
+.  Added -s/--smallnet runtime option to the ircd, removed --enable-small-nets
+   from configure
+.  Completely rewritten install-sh script. Now at version 0.1 
+19.04.2003
+.  Totally rewrote version.c.SH
+18.04.2003
+.  Removed --enable-root, made this a runtime option
+.  Created interproc interface to do interprocess communication
+   This will currently be only used by the proxymon module
+.  Finished interproc parsers for notice/gnotice/globops/kline/akill
+.  Changed proxymon to use the interproc interface (numerics are not
+   done yet)
+.  Finished numeric parsing in the interproc interface
+17.04.2003
+.  Removed all mutexes.
+16.04.2003
+.  Mutexized the send functions.
+15.04.2003
+.  Merged all network IO options into one single configure parameter.
+.  Cleaned up configure.
+13.04.2003
+.  Added close and reopen logfiles on rehash feature.
+	Suggested by Christoph Heine (critel)
+09.04.2003
+.  Fixed bugs with m_squit.c Ensured that a three server constellation does
+   work. This must be expanded to include ziplinks/encrypted links capability,
+   which currently does not work.
+.  Ensured that the new ziplinks code works without problems.
+08.04.2003
+.  Removed old converter.sh because it was no longer maintained.
+.  Finished cygwin port of the ircd. 
+.  Ensured that the ircd does no longer core dump when sending quit messages.
+.  Ensured that chanmode +L is working properly.
+.  Removed DUMB IAUTH defines. TR-IRCD Does not use iauth.
+07.04.2003
+.  Implemented SAFELIST.
+.  Finished freebsd port of trircd. Ensured that PTHREAD_SCOPE_SYSTEM is
+   no longer used, since its not supported by FreeBSD.
+06.04.2003
+.  Removed the ability to compile contributional modules into the static
+   built.
+.  Finalized static built ability
+.  Removed senseless hub = yes; entry from the server config file. Hub 
+   is now always default. It was only used in m_pong.c
+.  First stage of the two-level ircd.conf parsing.
+.  Finished two-stage parser, to read classes before we read auth/operator/connect
+05.04.2003
+.  Created Makefile scripts to generate src/static.c and include/static.h
+04.04.2003
+.  Removed static.[ch] as a beginning for the new static build system
+02.04.2003
+.  Fixed missing unknown_list removals from several free_client calls
+30.03.2003
+.  Finalized the 3 missing checkboxes on httpd_get.c
+.  Simplified src/send.c and merged send_linebuf into send_message
+29.03.2003
+.  Ensured that helpop information is shown on whois.
+28.03.2003
+.  Fixed incorrect add_id return values.
+        Reported by James Wilkins (ircdome)
+.  Ensured that no non-native servers do connect in native mode
+        Reported by James Wilkins (ircdome)
+27.03.2003
+.  Added channelmode +d to hide part and quit messages.
+.  Expanded wordfilter with the ability to stop quit and part messages.
+.  Made klines to nicknames cover only host like *@host.
+.  Made whois show the ip addresses also
+21.03.2003
+.  Fixed problems in exiting clients.
+18.03.2003
+.  Fixed dlink nodes which were not freed correctly.
+.  Fixed many bugs in dlinkDelete, wrong structures were meant to be
+   freed.
+17.03.2003
+.  Finished adding operevent logevent, so that all of the operator
+   command usage is now logged to the events.log file.
+.  Resized some buffers which could be causing problems.
+.  Resized linebuf sizes, to prevent users from sending long texts
+16.03.2003
+.  Made /gline and /ungline simpler so that they now only use
+   the *kline commands, as well as that the default_kline_time is 
+   now applicable to the glines also.
+15.03.2003
+.  Ensured that mode +uaohv does always show the users correct nick
+.  Added channels &KLINES and &QLINES to show the appropriate 
+   notice types.
+.  show_oper now does not show ip addresses.
+14.03.2003
+.  Ensured that fakehosts are generated earlier.
+.  Fixed bugs in m_rping.c
+.  Fixed buffer overflow problems in channelmode modules
+.  Added check for signal.h for solaris
+13.03.2003
+.  Changed scheduling policy from explicit to inherit, to make hpux 
+   happy.
+.  Modified autoconf/install-sh to handle multiple input files when
+   invoked with -c . (similar to GNU version)
+.  Changed configure.in to check for QNX OS. 
+   Regenerated include/setup.h.in to reflect the changes.
+.  Changed all occurences of uname -s to "$host" to make usage of the
+   config.sub and config.guess scripts.
+.  Removed compile time inclusions of setup.h and merged them into
+   zlib.h and regex.c
+.  Made the configure script show more information on finish.
+10.03.2003
+.  Ensured that the send_umode was sending to the nickname instead
+   to the nick!user@host.
+.  Operators were unable to see channel (beIMz) without being
+   opped, this is now solved.
+08.03.2003
+.  The configure.in was modified to detect pthread.h and use -pthread
+   instead of -lpthread
+.  Fixed silly bug in boot.c
+.  Began doing hpux port
+.  Rewrote the dccallow interface, was totally buggy.
+03.03.2003
+.  Fixed the dumb errors in the Makefile for the zlib.
+	Reported by Mecki (herrohr@gmx.net)
+.  Did cosmetic fixes in the httpd_get.c
+02.03.2003
+.  Redesigned doc/ subdirectory structure. Changed Makefile for this.
+01.03.2003
+.  Finished the 'options' section in generate_ihttpd_config_file().
+.  Fixed a small bug regarding policy parsing in httpd_get.c
+.  Fixed a segmentation fault bug in the ihttpd.conf file generation.
+.  Removed the http exception list from configure.htm .
+.  Added a Proxy Monitor configuration block in configure.{htm,hti}.
+   Fixed the parser & structs in order to be able to display/change
+   the proxymon absolute path in the configuration file.
+28.02.2003
+.  Added capability of web-based ACL entry addition.
+.  Fixed logical error in the httpd parser causing all section be
+   necessary and otherwise failing to a misparse.
+.  Fixed typo within configure causing numofdays not be used.
+27.02.2003
+.  Fixed a SILLY typo in m_sqline.c causing the token for SJOIN
+   be replaced.
+.  Added separate ACL Control page (acl.htm) and the capability of 
+   web-based ACL entry removal (NOT DONE YET ;> )
+26.02.2003
+.  Finished button operations for commands.htm/commands.hti
+25.02.2003
+.  Fixed problems with sendto_channel_butone
+.  Did maskfile.conf dump coding.
+.  Added username/password generation code for the webconfig-only 
+   mode
+.  Added configuration backup routines.
+.  Removed almost all of the goto's from the main ircd source
+   (except s_packet.c)
+.  Finished dumpconf functions
+23.02.2003
+.  Fixed bug about sendto_match_butone causing crashes
+22.02.2003
+.  Did more dumpconf coding.
+21.02.2003
+.  Did more dumpconf coding.
+.  Added module flags. These help to distinguish between
+   modules that get loaded on different occasions 
+   (autoload, configfile, proxymodule, httpdmodule)
+   This will help with dumpconf when writing down the modules
+   section.
+.  Tossed of >dependent from the module structure, since
+   it was not used anymore.
+.  Made persistent be a module flag.
+.  Did sanity checks for the parser to prevent modules from
+   getting wrong flags.
+19.02.2003
+.  Did some cosmetic fixes in the httpd
+	Reported by Mecki (herrohr@gmx.net)
+18.02.2003
+.  Made server owned channels +ps to make non-opers not see
+   them.
+.  Added writeconf button to the commands.htm
+.  Begin of a cookie based identification model.
+17.02.2003
+.  Added access list address display in config.htm.
+   Started new section for rehash/restart/shutdown commands
+   in httpd_get.c
+16.02.2003
+.  Did forgotten sections in config.htm/configure.hti about
+   server specific address.
+15.02.2003
+.  Begun writing dump_config functions.
+.  Fixed bug with proxymon module
+	Reported by Mecki (herrohr@gmx.net)
+12.02.2003
+.  Added login_via_web option to the operator block, to distinguish
+   between different operators who are allowed to login.
+10.02.2003
+.  Fixed a bug with the ban counter
+09.02.2003
+.  Fixed a bug with sendto_match_butone
+.  Fixed bugs with new servers disconnecting too early
+.  Fixed a bug with m_sjoin causing null keys be copied
+.  Fixed a bug with unkline
+.  Fixed a bug in wordfilter.
+.  Fixed a bug in httpd_get.c, where require_index was not parsed 
+   in a correct manner.
+.  Corrected some compilation errors (typos) in httpd_reader.c and
+   modules/m_info.c
+.  Fixed a bug with sendto_channel_butone
+08.02.2003
+.  Made httpd be able to understand requests containing hostnames:
+   GET http://www.bla.com/ HTTP/1.1 
+.  Added configure.hti which parses client input from the config.htm
+   and configures the server
+.  Removed redundant code from m_kick.c and s_user.c
+.  Finished the httpd unload code with the mutexes. 
+.  Added also a client purge code to remove remaining clients.
+07.02.2003
+.  Fixed the problems with mozilla browser under certain circumstances
+06.02.2003
+.  Redid the flags issue on sendto_channel_butone.
+.  Reworked on m_who.
+.  Some fixes for exit_client.
+.  Resort unknown_list removal.
+.  Added sanity checks into parse() with IsPerson instead of IsClient
+.  Fixed the invisible counter bug.
+05.02.2003
+.  Added auth.hta and auth.htc
+04.02.2003
+.  Added class.hta and class.htc
+.  Made add_user_to_channel safe.
+03.02.2003
+.  Reimplemented host_header parsing in a more efficient way. (thanks Yusuf!)
+.  Moved it to the right file :-P
+.  Optimization to sendto_channel_butserv
+.  Removed hooks for add_user_to_channel and remove_user_from_channel
+   Did required optimizations for this.
+.  Added a blockheap for chanmembers.
+.  Fixed a bug in host_header parsing. Now it works fine.
+02.02.2003
+.  Introduced struct ChanMember, killed all of the chanusermodes lists,
+   now using this for this issue.
+01.02.2003
+.  Added connects.hta and finalized connects.htc
+.  Did small fixes to can_join
+.  Added operator.hta and finalized operator.htc
+31.01.2003
+.  Added zlib back to the source, removed HAVE_ZIPLINKS_ON
+.  Removed disabling of mmap.
+.  Removed support for pelennor and halcyon
+30.01.2003
+.  Commited some httpd code to handle the host_header directive. 
+   It is not done yet, therefore it does not really work. Needs
+   heavy debugging (and indenting).
+.  Added listener.hta, which does the job to add a new listener block
+.  Removed unnecessary code from do_local_user
+	Pointed out by Michael
+29.01.2003
+.  Listener block change page (listener.htc) is now completed.
+28.01.2003
+.  Small fixes, especially memory leaks in chanmode modules
+26.01.2003
+.  Removed --enable-greeklish from configure.in and added it as an
+   ircd.conf option. Did appropriate parsing and modified required 
+   files.
+25.01.2003
+.  Added url decode functions. Heavily modified from uncgi package.
+24.01.2003
+.  Did more ihttpd.conf parsing.
+.  Fixed a small bug with ssl + http parser code.
+.  Added -D_REEANTRANT to the configure
+23.01.2003
+.  Added extended whois contributional module
+22.01.2003
+.  Small fixes to exit_client.
+21.01.2003
+.  Fixed missing EXCAP on capabilities.
+.  Port setup interface for the httpd.
+.  tools/ircpasswd.c was replaced with a more secure/reliable version.
+20.01.2003
+.  Added listener.htm, which shows up a drop down menu of listener blocks,
+   the way they appear on the ircd.conf
+19.01.2003
+.  Added uuids to the listeners.
+18.01.2003
+.  Added libuuid
+.  Updated copyright to include 2003
+.  Added uuids to config elements. 
+.  Updated web interface to distinguish between different config elements
+   by the usage of uuids instead of names or userhost pairs.
+17.01.2003
+.  Did additional checks into exit_client. 
+16.01.2003
+.  Did heavy cleaning in confitem.c and confitem.h Removed all the unnecessary
+   stuff
+.  Removed support for old style U/H lines. This was already removed, but some
+   dummy structs and functions were still available.
+.  Rewrote class.c
+.  Added -Werror to ensure warningless compilation
+15.01.2003
+.  Did more httpd coding, added operator config page.
+.  Added classes config page.
+14.01.2003
+.  Added config-file options for usermodes cCpw, added necessary documentation
+   for this.
+13.01.2003
+.  Implemented "Connection: close" for http. 
+.  Fixed http client exit issues.
+.  Made the channelmode +j config-settable. And did the necessary changes
+   to the httpd output also.
+.  Implemented 3 new usermodes. 
+   +c : no colors in private messages, self and opers excluded
+   +C : ctcp filter in private messages, self and opers excluded
+   +p : hide idle time, and signon from /whois, self and see_hidden excluded
+12.01.2003
+.  Added code to detect a clients port.
+.  Kicked out /who +CM
+.  Finalized the SSL implementation on the httpd module.
+11.01.2003
+.  Fixed a bug with httpd regaining clients
+.  Exit fixes. Again.
+10.01.2003
+.  Fixed a bug with sendto_one_person occuring on multiserver 
+   environments.
+	(Thanks to TrimLock)
+.  Rearranged send_channel_modes which was totally incompatible.
+.  Fixed a buf with m_tmode causing no propagation to non-tmode servers.
+   Made it in the meantime capable of handling +L channelmode.
+07.01.2003
+.  Added back channelmode +q, was there but did not appear
+.  Added channelmode +j, preventing /names and /who from non-members
+23.12.2002
+.  Added code to enable the httpd thread to exit, and then unload its module.
+   This must be tested.
+20.12.2002
+.  Fixed maskitem.c, find_maskitem was senseless. Interesting that it
+   looked to be working...
+.  Expanded maskitem.c for the regex ability. Did some coding for regmatch.c
+.  Expanded m_stats.c for the regex listing.
+.  Indention of operdo
+.  Add Headers to modules/operdo/*.c
+.  Created r_kline/r_gecos/r_quarantine/r_jupiter as hook modules for the
+   REXCOM command.
+.  Did documentation fixes for the use_regex directive in the ircd.conf
+.  Made can_send() and can_join() hook-based. Not completely but for chanmodes
+   that do not manage linked lists. (singles, key, limit)
+.  Added commandline parameters to run the ircd in web-configuration-only mode
+.  Managed the ircd.c and httpd module to comply with the web-config-only mode
+.  Finished sigio/devpoll/kqueue support for the two sets of file descriptors.
+.  The last bug to be fixed, which caused stack overflow in s_send.c
+   was removed. Special thanks to Andreas Haeberlen.
+19.12.2002
+.  Created rexcom subdir, for the new regex based management command.
+   Did required modifications for this.
+.  Corrected some typos about ihttpd.conf parser.
+18.12.2002
+.  Did small fixes to adns
+.  Did header parsers for the httpd.
+17.12.2002
+.  Added more functions to parse http headers
+15.12.2002
+.  Added options for deactivating ip masking/hiding mode +x and for
+   choosing whether or not +x should be forced to the clients upon
+   connection.
+.  Did preliminary support for httpd headers. Must be finished.
+.  Fixed bugs with the greeklish support in send.c
+	Reported by Pantelis.
+.  Fixed bugs with non-ssl client connecting to an ssl port
+	Reported by Pantelis.
+.  Fixed logical problems with ircd running without the ircd.conf
+.  Redid make_daemon and divided it into three stages.
+.  Fixed memory leaks with two servers linking and one does not have IPv6
+14.12.2002
+.  Removed modreload.
+.  Added the GNU regex library to the ircd. This will be used for the
+   new regex based maskitem system and its commands
+10.12.2002
+.  Added support for unloading dependent modules (children) 
+   automatically whenever a parent module is being unloaded.
+   I guess initially there will be some bugs.
+.  Created an example ihttpd.conf file. Did some fixes to the code,
+   to suppress warnings happening when compiled without openssl.
+.  Changed destination directory for the httpd and proxymon to lib/tools
+.  Made TOOLMODPATH be added to modpathlist.
+.  Added md5sums to m_hash.c for the httpd directory.
+.  Fixed bug with not adding hooks after loading parent module case.
+08.12.2002
+.  Removed operserv_other_host. Was TOTALLY unnecessary and confusing
+.  Did a big step into finishing configuration interface output
+07.12.2002
+.  Did the beginning of the ircd.conf interface.
+.  Made some reordering in blockheap funcs.
+06.12.2002
+.  Made fixes to enqueue_* to ensure that modules are not queued twice.
+.  Made fixes to terminate_maskitem because of the mutex lock problems.
+05.12.2002
+.  Added support for module dependency. Now when a module is 
+   loaded, it checks if it needs any parent modules and if yes
+   it automatically loads them. Still need to check for any bugs 
+   though.
+.  Did some indenting, and HPUX compatibility, removed unnecessary code
+   sections. 
+03.12.2002
+.  Finished the first stage of the new httpd_get function.
+02.12.2002
+.  Touched the operdo code, so that the get_opcommand function is not needed
+   anymore. Added a 'char *extra' element to the hook_data struct.
+.  Made httpd remember closed connections.
+01.12.2002
+.  Created an httpd author function, to create html objects with begin/end
+   tags.
+.  Removed close_connection(), merged it into exit_client().
+27.11.2002
+.  Synchronized blalloc.c with hybrid7
+.  Removed free_anuser block heaps, and replaced it with MyMalloc calls.
+26.11.2002
+.  Created httd hooks. 
+.  Fixed bugs with the logsystem and additional logfiles.
+.  Redesigned network code to handle multiple sets of listening elements.
+   This redesign must be tested and also adapted to sets other than poll/select.
+   A solution must be found for the max number of opened sockets case.
+.  Made listeners of type http be handled differently.
+23.11.2002
+.  Fixed all OPERDO module bugs. The OPERDO section now has 
+   full functionality.
+.  Removed all the references to USE_FAKEHOST.
+.  Made mod_clear_paths not run after rehash.
+22.11.2002
+.  Added m_operdo_{kick,join,help}.c modules. Fixed some bugs in previous
+   implementation of OPERDO TOPIC and OPERDO KICK. All of them are functional.
+   Still need to fix some minor issues regarding sending notices and 
+   numerics.
+.  Remutexized maskitem creation
+.  Added a randomize utility and prevented openssl from reading that from 
+   /dev/urandom, since openssl does not know when to stop.
+.  Created an httpd directory, the initialization file, the necessary header
+21.11.2002
+.  Cleared out some bugs of the ssl connections.
+.  Added modules/operdo/m_core.c and modules/operdo/m_operdo_mode.c .
+   Some minor bugs need to be fixed. Other operdo modules will 
+   follow. Deleted the original m_operdo.c .
+.  Reversed the way the modules are beeing loaded/unloaded by the
+   loader thread in loader.c . Used to be FILO, now it is FIFO.
+.  Added SeeHidden capability to the operator block, and oflags.
+.  Elevated /links privileges from opers to opers with umode +H
+.  Downgraded the ability to see secret channels in /who to umode +H
+.  Elevated /map privileges to umode +H
+.  Elevated /servlist host reveal privileges to umode +H
+.  Elevated /stats serverinfo about ulined to umode +H
+.  Elevated remote trace to umode +H
+.  Elevated m_userip to umode +H
+.  Did some code cleanup in userhost/userip
+.  Elevated the ability to see realhosts, actual IP in /whois to umode +H
+.  Elevated the ability to see secret/private channels in /whois to umode +H
+.  Elevated the ability to see realhosts in /whois to umode +H
+.  Elevated the ability to see Ulined servers in /lusers to umode +H
+.  Elevated the ability to see nicks in /names to umode +H, when the channel is not joined.
+.  Fixed some bugs in modules/operdo/m_core.c and added m_operdo_topic.c .
+20.11.2002
+.  Added SSL Capability for Client Connections.
+   This code has been adapted from the SSL patch for the
+   Bahamut ircd with slight changes and adaptations to the
+   comm_setselect system.
+.  Modified the listen{} to define clientssl additionally.
+.  Added tools and utilies for the SSL capability.
+19.11.2002
+.  Reversed IPv6 detection on configure.in since it did
+   not work.
+17.11.2002
+.  Finished the third stage of the new maskitem system.
+   The new maskitem system has been integrated into rehash.
+16.11.2002
+.  Finished the second stage of the new maskitem system, 
+   removed all ancient and slow code to detect and add and remove
+   klines, sqlines, sglines, jupiters, autokills, both locally
+   and globally.
+.  Removed find.h and merged it into client.c
+.  Did some bugfixes.
+15.11.2002
+.  Finished the first stage of the new maskitem system, combining
+   klines, autokills, sqlines, etc into one single interface.
+.  Merged hash.h into capabflag.h and struct.h
+14.11.2002
+.  Moved all of the system includes into include/sys.h
+   Cleaned up other include files.
+.  Created modules/operdo directory, m_operdo.c now 
+   resides there.	   
+13.11.2002
+.  Did some code cleanup on proxymon, made it use hooks
+12.11.2002
+.  Reworked on configure script, made the output shorter.
+.  Implemented a way to detect ipv6, and removed that option
+.  Greek language file has been added.
+11.11.2002
+.  Added some documentation about the proxy scanner
+.  Did some code cleanup.
+.  Separated boot-time functions into boot.c
+.  Added documentation about the OPM
+.  Reworked on the logevent_register declarations and limited the calls
+   to one single file on most cases.
+09.11.2002
+.  Reworked on configure so that it gives out a brief information of
+   configuration options
+.  Separated proxy callbacks into another file
+.  Added helpop mode +h, and some whois extensions for this mode.
+.  Added ability to display modes in whois.
+.  Added native greek support to the ircd. Message database still
+   needs some updating.
+08.11.2002
+.  Finalized autokill option of proxymon
+07.11.2002
+.  Redid the proxychk command
+.  Extented m_post with PUT and GET (taken from hybrid 7)
+04.11.2002
+.  Fixed parser/lexer for the proxymon action line
+.  Redid the create_modelists to run everytime a chanmode module is
+   loaded by the loader thread.
+03.11.2002
+.  Removed all the necessary includes from files, and merged them mostly
+   into include/sys.h
+.  Made create_modelists into an event called every 120 seconds.
+02.11.2002
+.  Added greeklish support to the ircd. There is still work 
+   to be done on it though.
+01.11.2002
+.  Created a new thread based loader responsible to load and unload the
+   modules. Some work with it is currently missing.
+30.10.2002
+.  Sorted alphabetically the usermode and channelmode lists. Now they
+   are displayed as aAbBcC... etc.
+28.10.2002
+.  Added boot script and sysconfig information for Linux systems.
+25.10.2002
+.  Implemented conditional predicate codes to prevent the proxy
+   scanner to accidentally take 100% CPU when there is nothing
+   to scan. Therefore we also do not need implementing sleep
+   functions in the scanner.
+.  Expanded the proxy scanner related configuration for both 
+   /quote set and the ircd.conf
+.  Rewrote the m_set.c
+22.10.2002
+.  Implemented new callback functions for the proxy checker
+   module thread.
+19.10.2002
+.  Fixed NICK change bug sptr -> nick; %~C -> %s
+14.10.2002
+.  Fixed the bug about the ircd coring down when calling
+   find_client after a buggy del_from_client_hash_table! oops!
+.  Redid the code with regards to -Wmissing-prototypes
+07.10.2002
+.  Fixed problems related to %!C because of non-id capable
+   servers.
+.  Fixed DOUBLE SERVER problem.
+.  Fixed INSTALL file for misleading information about 
+   the example configuration file.
+.  Added bison 1.50 compatibility
+.  Fixed the bug in m_setlang.
+06.10.2002
+.  Fixed problems with sendto_channel_butserv
+05.10.2002
+.  Fixed some oddities with remove_client_from_list
+.  Fixed some oddities with m_sjoin
+.  Added missing operator config options to the example
+   config file.
+.  Reworked on flush_connections code for zipped links.
+.  Redid the sendto_channel_butserv with a new prefix
+   preparation function.
+.  Fixed m_sjoin not setting modes correctly.
+.  Reworked on the splitmode checking code.
+27.09.2002
+.  Finished turkish translations for the help files.
+26.09.2002
+.  Added a way to enable channelmode modules and the usermode
+   interface to modify the output of RPL_MYINFO and RPL_ISUPPORT
+   regarding the modelist, and the CHANMODES= definition.
+25.09.2002
+.  Added the first step of the iupdt module, the iupdt.sh
+   script, and modified configure to modify the incomplete
+   version as well.
+.  Added the second step of the iupdt module, the UCHECK
+   message and the related subdirectory in the src/.
+24.09.2002
+.  Cleaned up the config file even more.
+.  Added /infoconf [list] to display the server configuration
+   also accross the network.
+.  Changed the iphash system to comply with the one of hybrid7
+23.09.2002
+.  Rewrote the usermode features totally, introduced a new UserMode  
+   structure to make life far more easier with m_umode.
+   The new usermode parser is faster.
+22.09.2002
+.  Added new lexer/parser pair for the new maskfile format
+   This new format replaces support for old style configs in
+   K:Lines, Q:Lines, J:Lines and G:Lines.
+.  Also added an example configuration file for the above feature.
+   And removed support for old style configuration files.
+20.09.2002
+.  Added Channelmode +g, to do the same task as Bahamuts +M, to
+   prevent users with non +r nicknames from sending to the channel
+19.09.2002
+.  Rewrote the ChanMode structure, expanded it with flags for a more
+   portable version
+18.09.2002
+.  Added channelmode +F to the contributional module wordfilter, to
+   disable the wordfilters in a channel.
+.  Expanded the operator { } block to include settable capabilities
+   for gklines, kill, operdo commands also, and made m_oper report
+   an operator their privileges.
+17.09.2002
+.  Added Channelmode +C, to block any kind of ctcp to a channel
+   (ctcp, dcc, action messages)
+.  Added realname_replacement feature, to replace a users SGLINE'd
+   realname with a default string set from the server config file.
+.  Added delay capability to /restart and /die; specify through another
+   parameter defining the number of seconds to wait until the operation
+   is executed.
+16.09.2002
+.  Added Channelmode +L, link mode, to link a channel to another.
+   This way, users joining a channel will automatically be redirected
+   to another channel. Setting this mode incorporates the removal
+   of all users, and setting the channel to +TnspqlL 2 #destination
+   It makes the server pseudo client join the channel and by removal
+   leave the channel. Mode is activated through the configuration option
+   channel_link in ChannelConf { } section.
+.  Created md5hash.a, a library for all the hash functions.
+   Removed references to md5.h and md5 includes. 
+   This library is also linked with ircpasswd utility.
+.  Added UPTIME command, including token "o", as an alias for
+   /stats u.
+
+.r 5.0 release
+20.09.2002
+.  Made valid_username use IsAlnum instead of IsAlpha.
+        Reported by dg (dgl@dgl.cx)
+18.09.2002
+.  Cleaned up unused items in the config file.
+.  Reworked on the way capab is sent, added EXCAP capability
+   for the new EXCAP command.
+15.09.2002
+.  Cleaned up most of the free_* code.
+.  Fixed bugs with free client.
+.  Removed PwdItem structure.
+.  Fixed documentation about the missing floodcontrol item
+14.09.2002
+.  Fixed key remove bug.
+13.09.2002
+.  Added forgotten code to read maxclients file back.
+.  Removed /zline and all related code.
+.  Fixed kline behavior oddities.
+17.08.2002
+.  Redesigned channel.h and rewrote buggy send_mode_burst.
+.  Fixed channelmode modules to work correctly with the new
+   send_mode_burst.
+16.08.2002
+.  A first attempt has been made to fix send_mode_burst by chanmode
+   +x
+14.08.2002
+.  ListOptions structre is now no longer bound to the user
+   structure. 
+	Reported by Teoman Özdemir (teoman@anet.net.tr)
+
+.rc4
+10.08.2002
+.  Fixed auth, which did not really read the reply.
+ 	Reported by toxic (toxic@rt.mipt.ru)
+09.08.2002
+.  Added fixes to prepare_channel_prefixes_localremote
+08.08.2002
+.  Bugs in free_client and sendto_channel_butserv were solved.
+.  Added a small test environment for GNU Makefiles
+.  Made fixes to dependent module loader.
+.  Fixed odd behavior when adding and removing bans.
+07.08.2002
+.  Sendto_gnotice from samode/operdo has been replaced with sendto_ops 
+	Demanded by "FireHazard"
+.  Rewrote all chanmember case, and removed it and made channel
+   dlink lists use client structures instead.
+.  Removed totally unnecessary code from some chanmode modules.
+.  Added helper functions as protocol flags to help block heaps
+   run correctly.
+06.08.2002
+.  Rewrite of all sendto_channel_butserv to use Tokens and also
+   buffer prepare functions. Moreover, function call has been
+   shortened.
+.  Made /stats F, L, X, h, p use NUMERICs instead of NOTICEs.
+.  Garbage collecting will now be run with the event manager.
+.  Totally unnecessary events were removed.
+05.08.2002
+.  initblockheap fixes
+.  Replacement of some initialization functions in ircd.c main loop.
+03.08.2002
+.  Fixed bugs with the text to be sent when talking in a +c channel.
+	Reported by Teoman Özdemir (teoman@anet.net.tr)
+.  Fixed misbehavior with channelmode +b and /nick commands.
+	Reported by Teoman Özdemir (teoman@anet.net.tr)
+
+.rc3
+31.07.2002
+.  Added a kludge into adns/check.c to reinit resolver if dns_state
+   got unexpectedly NULL.
+30.07.2002
+.  Wordfilters now use dlink lists.
+.  Fixed buggy behavior of user_parse();
+.  Added /stats ~, report configured dns servers.
+.  Fixed bugs in m_nick.c, resulting in failure to load the module
+   if fakehost support has been disabled.
+28.07.2002
+.  find_client and find_channel have been revisited.
+.  Found out why some clients were exited multiple times:
+   The quit/squit was sent more than once.
+.  Cleaned up SJOIN sjbuf filling code.
+.  added logevent_personal, to create and use personal debug text.
+.  Removed do_identd directive since it served no purpose.
+.  Modified comm_connect_tcp like h7 and added the timeout field.
+.  Timeout value for identd connections can be set via the 
+   server configuration file with identd_timeout option.
+.  Changed outofmemory() to tell what it was doing.
+.  watch.c separated from hash.c
+27.07.2002
+.  Fixed de-MODE problems with SJOIN.
+.  Rewrote the copybuf totally, added waitlen and restbuf to
+   the client structure, and prevented the ircd using a single
+   buffer for all clients.
+26.07.2002
+.  Fixed problems with /display showing part of comments
+.  Fixed /rehash throttles not working correctly.
+.  Added kludge for the lexer pretending having errors.
+.  Modified failed-oper notices to show more information.
+.  Fixed IsOperMode to not trigger for local operators, unless
+   /operdo or /samode has been used.
+.  Removed dgets() forever, fbgets is being used for this.
+.  Reworked on PARSE_AS_SERVER and added code to ensure that
+   server_parse is not revoked for client connections.
+.  Fixed problems not setting client_p->servptr correctly.
+.  Fixed operdo allowing only ONE mode change due to misplaced 
+   ClearOperMode();
+25.07.2002
+.  Small fixes for invisible counter added.
+.  Small fixes for languages added.
+.  Small fixes for idle time checker added.
+.  Small fixes for signal and sigio issues.
+24.07.2002
+.  Bugs with is_nuhed solved.
+.  Watch list management rewritten.
+.  Pointer problems with nick_is_nuhed solved.
+.  Problems in m_kick with pointers solved.
+.  Problems with exit_client not returning solved.
+.  Problems with m_pseudo not checking the hostname solved.
+.  Problems with pointers in remove_nuh, send_nuh solved.
+.  Invisible counter fixed.
+.  Added workarounds for channel svsmode
+23.07.2002
+.  Fixed m_join, looking to be setting +Tn, where it set +tn
+.  Added --enable-root, otherwise the ircd will not be run as root
+.  Rewrote aNUH * issues, and made channels use double linked lists also
+   for banlist, invitelist, exceptionlist, zapchanlist, modhostlists
+   This also helps solving memory leaks with SVSMODE when used for channels.
+22.07.2002
+.  Fixed more compilation problems with kqueue and devpoll
+	reported by Alex Dupre (sysadmin@alexdupre.com)
+
+.rc2
+22.07.2002
+.  Fixed bug in logfiles.c preventing logevents from being written to multiple files
+.  Fixed compilation problems with kqueue.
+	reported by Alex Dupre (sysadmin@alexdupre.com)
+21.07.2002
+.  Added a way to prevent modules from being unloaded : persistent modules
+.  Fixed bugs with dependent modules
+.  Added buffer cleaning code to s_send.c
+17.07.2002
+.  A bug with adns code was fixed.
+.  Added --disable-mmap option to configure, to disable mmap with mmap
+   problematic operating systems like solaris.
+16.07.2002
+.  Bug with too many connections, caused by wrong sequence of adns/auth
+   calls, removed with the help of Electric Fence
+11.07.2002
+.  Fixed problems with D_MAX_CLIENTS, max number of clients was
+   mistakenly hard coded.
+.  Fixed problems with errno.h on SunOS
+.  Fixed problems with Makefile, when running on /bin/sh which is
+   not bash.
+
+.rc1
+08.07.2002
+.  Bug in privmsg nick@server was not working correctly.
+07.07.2002
+.  Added a new serveropts string to /version, cleaned up patchlevel.h
+.  Added uninstallation option to the Makefile
+.  Revisited version.c.SH and fixed some oddities with md5sums
+.  Added a way to reload dependent modules from ircd.conf
+.  Fixed throttle_stats to not work when block heap allocation is not used
+06.07.2002
+.  Fixed bugs with /display, match() was replaced by strstr().
+.  Added documentation about TS5.
+
+.rc0
+29.06.2002
+.  Implemented a totally new Logging System. Based on LogEvents
+.  Fixed small bug in commandline parser.
+26.06.2002
+.  Fixed evil bug with /rehash, a not correctly initialized array in
+   the parsed caused invalid ports be initialized.
+.  Removed totally unnecessary logging information about connection
+   classes.
+25.06.2002
+.  Fixed bug with /rehash and listeners.
+.  Fixed bug causing crashes when freeing NULL ConfItem structures.
+24.06.2002
+.  Fixed bug preventing compilation on non-zlib enabled systems. 
+	Reported by Emrah@hotmail.com
+.  Added new channelmode +N preventing users from joining, when they do
+   not have a resolved hostname.
+23.06.2002
+.  Fixed some odd behavior with MODE, user was not informed of unknown
+   modes.
+.  Added another configure parameter to skip the usage of 64bit code
+   for hpux systems, since on some, there are missing 64bit libraries
+   even though the compiler can produce 64bit code.
+   --enable(disable)-wide-longs
+.  Dumb bug in halfops, where the user was added into chanops list :-/
+   was removed.
+22.06.2002
+.  Added a faster BASENAME protection code.
+21.06.2002
+.  Added 64bit checks into configure for HPUX, the ircd can now be 
+   compiled with +DA2.0W, objects will be PA-RISC 2.0 objects with
+   wide longs.
+19.06.2002
+.  Bugs with help file installation solved.
+.  Old LOCKFILE code removed totally.
+.  Bugs with server_parse and user_parse solved.
+.  Zapped channels mode is now functional. Additional checks have been
+   added to prevent non channel arguments from being added. Only arguments
+   beginning with # or & will be accepted
+.  Wordfilter code has been seperated into its own directory and files
+.  Bugs with /stats w not showing filtered word entries are removed.
+.  Makefile was changed to be GNU-ish, so it wont work on systems with
+   non-gnu Makefiles
+
+.pre8
+18.06.2002
+.  Obvious bugs with MODE letters eliminated.
+.  Tokens can now only be used by servers.
+.  parse() is now separated into server_parse and user_parse to make
+   the parse call faster by elimintating unnecessary checks.
+.  Rehash functions were moved to s_boot.c
+.  unkline * removes all klines.
+.  Ominous bugs with match() removed.
+17.06.2002
+.  Pseudo commands are bound into src/pseudo.c
+.  Bugs in do_nick_name solved, clean_nick_name from h7 taken.
+.  Bugs in /hs command solved.
+.  Bugs with single modes, where no mode was really set, solved.
+.  /unkline and /ungline can now work again.
+.  The installation routine forgot creation of localstatedir, var/
+.  A Bug in /join 0, which resulted in PART of one single channel
+   is now removed.
+.  converter.sh has been convinced to use TestNet as default network name.
+16.06.2002
+.  Klines and Zlines are no longer permanent, they are not
+   written down to the server kline files. 
+   The pending_kline case is totally removed. Klining permanently
+   should be something services should do, anyway.
+07.06.2002
+.  Merged many independent server variables into the
+   GeneralOpts Structure, and made them be usable.
+.  A new command line options parser is written and usable.
+.  It also supports GNU-like options (--debuglevel, for example)
+06.06.2002
+.  Added some more checking into can_send()
+.  Added consistency for struct pending_kline.
+.  Cosmetic fixes for numeric 005
+05.06.2002
+.  Removed cluster(). Klines use *username@host when invoked
+   by a nickname as a parameter, and Zlines use the IP when
+   invoked by a nickname as a parameter. No more *.domain
+   issues will be taken.
+.  Changed Makefile, that the conversion can take place with
+   the correct path information for the ircpasswd file, which
+   is required for md5 based password entries.
+04.06.2002
+.  Added a converter script, which can also be invoked by
+   configure, when --with-old-config=/path/to/old/ircd.conf
+   This converts the old server config file to the new format.
+.  Rewrote the code which does command line options parsing, 
+   and added gnuish options.
+.  Did some additional initializations for memory, as well as
+   core file creation, with code from hybrid.
+
+.pre7
+03.06.2002
+.  Strlcat was buggy, it has been re-replaced by strncat again.
+02.06.2002
+.  Another attempt has been made to solve the buffer allocation 
+   bug with encryption and zip enabled.
+.  Counters for user connects were removed, they have been added
+   back to the ircd.
+.  Small changes to m_error.c
+31.05.2002
+.  Bugs in m_getlang and sys_errlist issues with HPUX are solved.
+29.05.2002
+.  uintptr_t case solution taken from hybrid7.
+.  Block heap code patched again with mmap issues.
+28.05.2002
+.  Added --with-fakehost-postfix= directive to configure to change
+   default top level domain postfix used when creating fakehosts.
+.  Fixed bugs with devpoll/kqueue LOG_CRIT -> LOG_ERROR
+27.05.2002
+.  Patched block heap allocator code.
+.  Fixed bugs in m_stats
+26.05.2002
+.  Finalized code for s_packet.c where the failures about the
+   incomplete buffers existed.
+.  Redesigned char *_version to use CVS Revision information.
+.  Introduced a path generation script, which will allow the usage
+   of all variables of configure path definitions
+25.05.2002
+.  Removed old local[] totally. lclient_list is used for this.
+21.05.2002
+.  Removed strncat and strncpy and strncpyzt. Implemented strlcat 
+   and strlcpy for this task.
+.  Redesigned some information used for versioning.
+20.05.2002
+.  Added md5sums also for the include/ directory, updated m_hash
+   for this.
+.  Added Bahamut style control for acebots. GCOS check function
+   discovered by PB@dal.net
+.  Redesigned listen { }, added subblocks to define a listen set.
+   This allows to use { ip, port }; as well as { port, ip }; 
+   And so is this appropriate with the rest of the block
+   theory, and the listen subblock elements do no longer
+   require a predefined queue like: first the ip, then its ports.
+   Now you can freely write things the way you like it.
+   In plan is also a way of specifying multiple ip addresses
+   in the same listen subblock. Also updated manpage and the
+   example configuration file for this.
+
+.pre6
+18.05.2002
+.  The Problem with %T and casts and sizeof is solved.
+   This required modification of client and channel structures
+   and renaming tsinfo and channelts fields to tsval.
+17.05.2002
+.  Finally, the line/char skip problems in server connection
+   buffers solved. 
+.  Removed old GMP support, was unnecessary.
+02.05.2002
+.  Bugs in AKILL-RAKILL-EXCLUDE-REXCLUDE with regards to
+   Uline issues solved.
+01.05.2002
+.  Bug in MODE command a la MODE #channel +. nick solved.
+29.04.2002
+.  When compiling as static, some modules were forgotten to
+   be initialized. This has been solved.
+.  Enforced the usage of the %T determiner in timestamp issues.
+28.04.2002
+.  Cosmetic fixes to procotol reply functions.
+.  Bug in /stats O solved.
+.  Bug in SVSJOIN solved.
+.  Tests show that Ipv6 support can be compiled with cygwin 
+   and using Microsofts IPV6 API.
+
+.pre5
+25.04.2002
+.  Changes to /list so that it now works.
+.  Unused code about motd cleaned up, motd section is now in
+   server/s_motd.c
+22.04.2002
+.  Cleaned up bugs in the parser.
+.  Added u_int32_t fix for cygwin.
+.  Bug in linker with static modules solved.
+21.04.2002
+.  Implemented protocol changes to the CLIENT line to
+   inform the remote server about the ipv6 ip address
+   of the client.
+.  Made /userip command be able to display IPv6 hosts.
+.  Implemented hostmask match algorithms from hybrid7 to
+   make match_ipmask() better. This now also works for
+   ipv6 addresses.
+.  Ipv6 Protocol support is now fully functional.
+20.04.2002
+.  Implemented some IPv6 technologies to make the ircd listen
+   and accept on IPv6 addresses. The code for this is currently
+   not finished.
+19.04.2002
+.  Added a new way of Timestamp checking modes: TMODE, token ~
+   This will prevent modes from being inconsistent on two 
+   sides of the network after a netjoin.
+.  Added the determiner %T for ircvsnprintf, stating a
+   channelts or tsinfo value for the given structure.
+
+.pre4
+19.04.2002
+.  Missing checks in cm_flood.c and cm_limit.c are filled.
+   These would have prevented the ircd from correctly setting
+   modes when parameters of +l or +f were incorrect.
+18.04.2002
+.  The SJOIN case seems to be solved. The problems about
+   inconsistent letters in the MODE lines have now vanished.
+   They happened due to a misplaced check of buffers.
+17.04.2002
+.  Added a contributional module for GETLANG command, to get
+   the ID of the given language.
+.  Created a way to inform other servers about the chosen
+   language of a user. This is done with the MODE command,
+   it uses the +L <number> as a parameter and informs
+   other servers about language changes (/setlang)
+   Initial language is already propagated with the CLIENT
+   line, and the NICK line are used by software which is
+   unable to use Identities, tokens and languages.
+.  Modified the SVSMODE command, to support the +L mode
+   for a user to change their language.
+   It is also possible to use multiple mode flags with
+   SVSMODE line (+rdL <servicesid> <langnum>)
+.  Added the +L flag to the /who command to search for
+   users with the given language
+.  Also made general fixes to the m_who.c
+08.04.2002
+.  get_channel() has been updated and is now create_channel.
+   To find existing channels, find_channel shall be used.
+.  After a test compilation with -Wmissing-declarations
+   those cases are now solved.
+05.04.2002
+.  In order to prevent collisions, %-C has been renamed
+   to %~C.
+03.04.2002
+.  Problems with mode letters in CHFL_ case solved.
+.  Removed list.c and moved its contents to client.c and
+   channel.c
+.  Bug with +l or +k in SJOIN solved.
+02.04.2002
+.  Small debug fixes for parse.c
+.  Conflict case in the bison/flex parser solved. timespec
+   values shall no longer be added.
+01.04.2002
+.  Merged %D %E %F %I into %C -> %-C %^C %*C %!C
+.  Rewrote ircsprintf.c. Is now shorter and faster.
+.  Found a new way of parsing hooks faster. hook_call_event
+   no longer uses strings, but hook ids to call the hooks.
+31.03.2002
+.  Fixed tons of typos in ircd.conf.5 and example.conf
+30.03.2002
+.  Fixed evil buffer owerflow case in line buffering.
+
+.pre3
+27.03.2002
+.  Logical fixes to client exit case.
+.  Made SJOIN Halcyon capable
+26.03.2002
+.  Made fixes into server/s_numeric.c due to multilanguage support.
+.  Made fixes to m_services.c to make /services better.
+.  Ircd will start correctly even if aliasname= is missing.
+.  Problems in /stats K|k output solved. 
+.  Made fixes to m_unkline.c, made /ungline simpler.
+.  Typos in del_silence fixed.
+.  Made links_from_file work again.
+.  Made fixes to sendto_common_channels To prevent duplicate sends.
+.  Made fixes to cm_key.c the MODE was not set, only the key value.
+25.03.2002
+.  Bug in /stats a|A output about the duration of an autokill solved.
+.  Bug in find_conf*, where the absolute status instead of inclusion
+   was used, solved. 
+.  Turkish language module mostly finalized.
+.  Fixes in the parser for newer versions of bison (taken from h7)
+24.03.2002
+.  Created a makecontrib script, which makes the user choose which
+   modules to include from contrib/ if the ircd is compiled with
+   STATIC_MODULES defined.
+23.03.2002
+.  Added new options to configure to make the ircd be able to compile
+   with static modules and support trircd4 and Bahamut.
+.  Added example protocol and example language modules under contrib/
+.  Made channel svsmode work again. Return value problems with hooks
+   in remove_matching_nuhs solved.
+22.03.2002
+.  Privilege problems in MODE-TOPIC-KICK solved. Was due to a failure
+   in the handling of dlink lists.
+21.03.2002
+.  OpenSSL coredump case solved. Was due to a pointer dereference problem.
+.  Events resceduled to not start all at the same time.
+.  Writing down links to a file case is solved.
+.  Compatiblity problems with channelmode +T solved.
+.  Problems in /operdo and /samode solved
+
+pre2.
+20.03.2002
+.  Halcyon compatibility in PRIVMSG/NOTICE Directed finished.
+.  Added REHASH HELP
+.  Added HASH command to check MD5 summaries.
+.  IRCD now supports OpenSSL
+19.03.2002 
+.  Added MD5SUM code into the ircd.
+.  Enabled the ircd to send different CAPAB lines for
+   Different compatibility modes.
+.  Added Support for Greeklish.
+.  Problems with aliasname in send_me_* solved.
+18.03.2002
+.  Finished first step of protocol modules. Missing is a way
+   to support different SERVER, NICK, CAPAB lines.
+.  Made NICK and SERVER introduction code hook based, 
+   Protocol modules add the correct hooks.
+17.03.2002 
+.  Created a way to support more than two protocols.
+   Protocol support is now done on a modular basis, and it is
+   possible to support Bahamut pelennor and halcyon ircds.
+   Due to the high amount of necessary changes, it is not
+   planned to support other ircds.
+16.03.2002 
+.  Finally Fixed the problem leading into core after /rehash
+   It was due to removal of the CONF_CLIENT multiple times.
+15.03.2002 
+.  Changed m_services.c so that it also uses tokens.
+13.03.2002 
+.  Added cm_flood.c, support for floodmode in channels (+f).
+12.03.2002 
+.  Bug in m_squit solved: The function should not return FLUSH_BUFFER
+.  port directive in auth { } is now functional.
+.  Problem in next_client() about wildcard matching solved.
+.  Language string in /server: /server server port pass:host:language:nickservpass
+.  ChannelConf structure made better.
+.  The Ircd is now TS5 capable, no_chanops_when_split is removed.
+11.03.2002 
+.  rewrote total SJOIN command.
+09.03.2002 
+.  sendto_operators and sendto_users added
+.  flood control in m_message.c
+08.03.2002
+.  Makefile.in changed for versioning
+pre1.
+
+$Id: ChangeLog,v 1.58 2006/01/03 23:57:29 tr-ircd Exp $

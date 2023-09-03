@@ -1,0 +1,6 @@
+Following bugs are known to us:
+
+1) On FreeBSD, mode +z combined with a long channelname leads to crash, on linux it does not
+2) Interserver protocol command SJOIN may produce errors with channelmodes +f and/or +L
+
+

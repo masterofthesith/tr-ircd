@@ -1,0 +1,32 @@
+If you don't read this first, we won't help you.
+:-)
+
+Topics
+------
+
+1) Short installation information, for advanced users.
+
+Use the following commands:
+# ./configure --prefix=/destination/directory
+# make install
+
+See the INSTALL document for info on configuring and compiling
+TR-IRCD.
+
+2) Short uninstallation information, for advanced users.
+
+Use the following command:
+make uninstall
+
+3) Following packages are definitely needed when compiling 
+TR-IRCD:
+
+- GNU Make Utility: gmake
+- GNU Bison 
+- GNU flex or another lexer.
+- Optional OpenSSL
+- An operating environment supporting posix threads
+
+4) Please have a look at the example.conf file, especially
+when you want to activate features like the proxy scanner
+or the web server.

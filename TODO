@@ -1,0 +1,18 @@
+********************************************************************************
+* Things that will definitely be done.                                         *
+********************************************************************************
+
+5.7.1:
+
+. strange usercounts in /lusers
+
+********************************************************************************
+* Things that will never be implemented, DO NOT ASK!			       *
+********************************************************************************
+
+. God mode/Total invisibility mode
+. Privmsg redirection
+. SERVICESHUB support, as tr-ircd is not designed to work with DALnet Services.
+. SETHOST/SETUSER/SETNAME/SETNICK/CHGHOST/CHGUSER/CHGNAME/CHGNICK/VHOST 
+  or whatever commands some other ircds provide.
+

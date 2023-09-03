@@ -1,0 +1,50 @@
+# $ID: $ #
+
+The TR-IRCD IRC Software version 5.1 introduces a new ability.
+It is able to do proxy scanning on every incoming connection.
+(Except server connections)
+
+This feature has been realised as a module, which can be loaded
+and unloaded when the server is running. The appropriate module
+name is proxymon.so
+
+This module reads out its specific configuration from the 
+config file defined in the ircd.conf, proxy_monitor_options section.
+
+If not enabled through the ircd.conf, you can then use
+
+/quote set proxymon on|off to enable or disable it.
+
+Proxymon is based on libopm, which you have to install extra.
+Read the information in the INSTALL file for detailed configuration
+information.
+
+After proxymon is running, it will do scans on every connecting
+user, and do an action the way you have provided with the
+action directive of its configuration file.
+
+Moreover, detailed information of any scan connection is
+displayed in the &PROXYMON channel, if you have negfail_notices
+enabled.
+
+The module additionally provides the
+
+/proxychk <check|stats> <ip> <type> <port>
+
+command, using which you can get statistics via /proxychk stats
+or do scans on ip addresses you wish. You can also provide
+the command with an additional proxy type and port, if you want.
+
+/proxychk check 127.0.0.1 HTTP 8080
+
+For Example.
+
+The available proxy types are:
+HTTP
+HTTPPOST
+WINGATE
+SOCKS4
+SOCKS5
+ROUTER
+
+

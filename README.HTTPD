@@ -1,0 +1,25 @@
+TR-IRCD now includes a small web server which can be configured
+to help administrators to administer the ircd via a web interface.
+
+This small feature can be started via a module, named httpd.so
+within an irc session. Its as well as possible to run the ircd
+in webconfig only mode via
+
+./ircd --webconfig-only --webconfig-bind 127.0.0.1 --webconfig-port 8081
+
+The interface allows you to change existing settings, add new
+configuration blocks, save the existing setting, and also
+rehash or restart the ircd.
+
+This small webserver does not serve existing html documents.
+All of them are generated internally. 
+
+You are encouraged to use ssl, by creating a signed certificate.
+The httpd can also be used to support ssl connections.
+
+The web server can be used to save your complete configuration down,
+including any loaded maskfiles, or modules-that-are-loaded-via-conf.
+
+TR-IRCD Coding Team (c) 2003
+
+# $Id: README.HTTPD,v 1.2 2003/06/14 13:55:40 tr-ircd Exp $
