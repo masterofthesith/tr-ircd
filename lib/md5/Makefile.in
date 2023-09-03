@@ -1,0 +1,61 @@
+#
+# Makefile.in for trircd5
+#
+CC              = @CC@
+INSTALL         = @INSTALL@
+INSTALL_BIN     = @INSTALL_PROGRAM@
+INSTALL_DATA    = @INSTALL_DATA@
+INSTALL_SUID    = @INSTALL_PROGRAM@ -o root -m 4755
+RM              = @RM@
+LEX             = @LEX@
+AR              = @AR@
+RANLIB          = @RANLIB@
+MD5SUMS         = @MD5SUMS@
+LEXLIB          = @LEXLIB@
+CFLAGS          = @IRC_CFLAGS@ -DIRCD_PREFIX=\"@prefix@\"
+LDFLAGS         = @LDFLAGS@
+BITFLAGS	= @BITFLAGS@
+MKDEP           = @MKDEP@ -DIRCD_PREFIX=\"@prefix@\"
+MV              = @MV@
+RM              = @RM@
+YACC            = @YACC@
+PICFLAGS        = @PICFLAGS@
+prefix          = @prefix@
+exec_prefix     = @exec_prefix@
+bindir          = @bindir@
+libexecdir      = @libexecdir@
+sysconfdir      = @sysconfdir@
+localstatedir   = @localstatedir@
+
+MD5SUM_EXE      = @PROG_MD5SUM@
+
+PROGS           = $(MD5SUM_EXE)
+
+IRCDLIBS        = $(SUBDIRLIBS) @MODULES_LIBS@ @LIBS@
+
+INCLUDES        = -I../../include  
+CPPFLAGS        = ${INCLUDES}
+MODFLAGS        = @STATICFLAG@
+
+OBJS = main.o md5.o error.o xmalloc-kludge.o getline.o version-etc.o closeout.o getopt1.o getopt.o
+
+build: $(MD5SUM_EXE)
+
+$(MD5SUM_EXE): 	$(OBJS)
+	$(CC) ${LDFLAGS} ${BITFLAGS} -o $(MD5SUM_EXE) $(LFLAGS) $(OBJS)
+
+clean:
+	$(RM) -f *.o core $(MD5SUM_EXE) *~
+
+distclean:
+	$(RM) -f *.o core $(MD5SUM_EXE) config.h Makefile
+
+depend:
+
+install:
+	@echo "Installing md5 utilities"
+	$(INSTALL) -d ${libexecdir}
+	$(INSTALL) $(PROGS) ${libexecdir}
+	@echo "Installing md5 includes"
+	$(INSTALL) -d ${prefix}/include/md5 
+	$(INSTALL) *.h ${prefix}/include/md5

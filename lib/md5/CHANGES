@@ -1,0 +1,7 @@
+This is md5sum, extracted from gnu textutils version 2.0.
+
+xalloc-kludge.c has been modified to assume internal malloc works. 
+This should not be a problem, as if malloc does not work,
+you have other things to worry about. :)
+
+main.c (md5sum.c) has been modified to auto-define a few gnu variables.
