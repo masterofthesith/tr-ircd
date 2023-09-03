@@ -1,0 +1,5 @@
+WHOWAS <nickname>
+
+Displays a list of users who are no longer online
+but have used the given nickname.
+
