@@ -1,0 +1,28 @@
+##################################################################
+# TR-IRCD 5.x System Configuration Definition File               #
+##################################################################
+
+# Set this variable to either "yes" or "no" in order to start
+# the ircd on boot time.
+
+START_TRIRCD="yes"
+
+# Here you can define more start parametres for the irc daemon
+#   --logging | -l : Enables logging
+#   --dirpath | -d : Directory to look for the configuration files
+#   --configfile | -f : Alternate server configuration file
+#   --debuglevel | -x : Debuglevel
+#
+# There are more options that can be used with the ircd. For a 
+# detailed listing look at the manpage of the ircd.
+# In normal situations you dont need a parameter when running 
+# the daemon. They become useful in debugging situations, esp,
+# when you are trying to test your own modules.
+
+TRIRCD_PARAMETRES=""
+
+##################################################################
+# $Id: trircd,v 1.2 2003/06/14 13:55:48 tr-ircd Exp $
+##################################################################
+
+

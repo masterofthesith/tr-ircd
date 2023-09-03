@@ -1,0 +1,104 @@
+TR-IRCD Version 5.0 has the following changes:
+----------------------------------------------
+Module Support:	It is now possible to dynamically link
+modules to the ircd on runtime. This feature has been 
+also adapted to non dlsym() systems, like hpux.
+
+New Network Architecture: The ircd does no longer use
+the older network architecture of Bahamut Series. It is
+completely rewritten by hybrid7 coders, and taken from
+hybrid7 itself. For the socket operation the user is
+now free to choose between
+select()
+poll()	: Adviseable to use on Linux based systems
+poll() on /dev/poll : Adviseable to use on SunOS based systems
+kqueue() : Recommended to use on FreeBSD based systems
+poll() on SIGIO 
+
+Linked Lists vanished, Double Linked Lists are introduced.
+Hook Management functions help modules to clink into
+existing code sections.
+
+Event Manager: The ircd now uses events to handle the io-loop.
+It does no longer do additional comparison of flags, but only
+call the timered events.
+
+ircvsnprintf: Improved with determiners to make life easier:
+%C : client name, or name!user@host
+%~C : client name only.
+%^C : client name (user@host)
+%!C : client id
+%*C : stealth name
+%H : channel name
+%N : numeric number
+%K : aconf->name
+
+sendto functions are rewritten:
+
+extern void sendto_channel_butone(aClient *one, int incflags, int exflags, aClient *from,
+                      aChannel *chptr, char *token, char *pattern, ...);
+
+extern void sendto_channel_butserv(aChannel *chptr, aClient *from,
+                                   int incflags, int exflags, 
+                                   char *pattern, ...);
+extern void sendto_common_channels(aClient *user, char *pattern, ...);
+extern void send_quit_to_common_channels(aClient *from, char *reason);
+
+extern int send_message(aClient *to, char *msg, int len);
+
+extern void sendto_one(aClient *to, char *pattern, ...);
+extern void vsendto_one(aClient *to, char *pattern, va_list vl);
+
+extern void send_me_notice(aClient *cptr, char *pattern, ...);
+extern void send_me_numeric(aClient *cptr, int numeric, ...);
+extern void sendto_one_server(aClient *to, aClient *from, char *token, char *pattern, ...);
+extern void sendto_one_person(aClient *to, aClient *from, char *token, char *pattern, ...);
+
+extern void sendto_ops(char *pattern, ...);
+extern void sendto_lev(int lev, char *pattern, ...);
+extern void sendto_gnotice(char *pattern, ...);
+extern void sendto_users(long umode, char *pattern, ...);
+extern void sendto_operators(long umode, char *type, char *pattern, ...);
+
+extern void sendto_serv_butone(aClient *one, aClient *from, char *token, char *pattern, ...);
+extern void sendto_match_servs(aChannel *chptr, aClient *from, char *token, char *format, ...);
+extern void sendto_match_butone(aClient *one, char *mask, int what, char *pattern, ...);
+extern void sendto_flag_serv_butone(aClient *one, int include, int exclude, aClient *from, 
+                                    char *token, char *pattern, ...);
+
+extern void kill_client(aClient *, aClient *, char *, ...);
+
+-------------
+
+Identity management: The ircd now passes ids for both 
+users and servers and handles them with the ids. Collision
+problems get solved easily.
+
+Tokens: The commands now have token equivalents and the
+parse is much more easier since it now is only indexing in
+the token table.
+
+Channel modules are also made modular. But, they only can be loaded once.
+And not unloaded during runtime.
+
+accept_password, operator password, auth password, restart password, die password
+now have to be encrypted via /mkpasswd or tools/ircpasswd into md5 values.
+
+
+-------------
+
+Channels have new channelmodes
+
++x : HideOps : This will make sure that when entering a channel
+no channeluser modes are displayed until this user is opped/voiced/halfopped/etc
++T : Standard channelmode, means: topic can only be set by +a (protected) users
++B <channelname> : Users in the given channelname are banned in this channel
++M <mask> : moderated hostnames, like +m on a specific hostname
+
+-------------
+
+The ircd will no longer start when run with an unknown parameter.
+Debug and syslog functions are combined into irclog()
+The ircd no longer requires syslog. 
+
+The ircd uses in native mode CLIENT instead of NICK line.

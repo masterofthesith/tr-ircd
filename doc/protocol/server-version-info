@@ -1,0 +1,30 @@
+When you type /version you will often see something like this:
+
+Ever wondered what those funny chars mean after the version number? Well
+here they are:
+
+TS	TimeStamp Version
+ TS3	TimeStamp Version 3
+ TS7	TimeStamp Version 5 or later
+
+6	Ipv6 Support
+Z	Ziplinks Support
+E	OpenSSL Support
+G	Greeklish Support
+
+SM	Static Modules
+DM	Dynamic Modules
+
+NB	No Block Heap Allocator
+B	Block Heap Allocator
+
+SN	Small Network support
+NN	Normal Network support
+
+select	Uses select() 
+poll	Uses poll()
+kqueue	Uses kqueue/kevent()
+sigio	Uses RTSIGIO
+devpoll Uses /dev/poll
+
+

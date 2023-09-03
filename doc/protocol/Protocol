@@ -1,0 +1,104 @@
+TR-IRCD 5.0 Uses the following protocol commands.
+
+NICK <nickname> <hopcount> <timestamp> <username> <hostname> <fakehost> <servername> <servicestamp> <longip> :<real name>
+
+is used when remotely introducing a nickname to another compatible server.
+Please note that the <longip> parameter is now required, that also results
+in the ircd being unable to link with TR-IRCD 3.0 series.
+
+When all the servers are running in native mode, the ircd will use the
+following line to introduce a user.
+
+CLIENT <nickname> <hopcount> <timestamp> <username> <hostname> <fakehost> <langnum> <!client:server-pair> <servicestamp> :<real name>
+
+the client-server pair parameter is generated through the ID system.
+
+When connecting to a new server, following protocol commands are issued.
+
+PASS <password> :TS7
+CAPAB TS3 NOQUIT SSJOIN BURST UNCONNECT ZIP DKEY DT1 SERVICE EX-REX TRIRCD5
+SERVER <servername> 1 :<server description>
+MYID <!identity>
+SVINFO 7 3 0 :<current time>
+
+If remote server is not TRIRCD5 native, but does still support some features
+like Token support, the following capabilities are also accepted.
+TOKEN1 IDENTITY HIDENAME NICKIP.
+
+TOKEN1 states that protocol tokens are accepted, IDENTITY states that the
+client/server identity technique is used.
+HIDENAME states that the server is willing to hide its name
+NICKIP is a backwards compatiblity option, used to state that longips are 
+used in NICK line.
+
+When introducing another connected server to the newly linked server,
+following versions of the SERVER line are available
+
+SERVER <servername> <hopcount> XYZ <!serverid> :<server description>
+SERVER <servername> <hopcount> XYZ :<server description>
+SERVER <servername> <hopcount> :<server description>
+
+of which, XYZ can be made of H,U,R,N.
+
+H: Server wants the name be hidden
+U: Server is Ulined
+R: Server is a Hub.
+N: Nothing.
+
+The first version states, that this server has an ID.
+The second version states, that this server does not have an ID.
+The third version is only used, when the remote server is not TRIRCD native.
+
+When introducing channel users, the following well known SJOIN line is used.
+
+:<servername> SJOIN <channelname> <channelmodes> [<mode parameters>] :[.~@%+]nickname1 [.~@%+]nickname2 ...
+
+
+TRIRCD uses the following protocol commands also
+
+To place and remove nickname quarantines by services:
+
+SQLINE <mask> :<reason>
+UNSQLINE <mask>
+
+To place and remove IP zaplines by services:
+
+SZLINE <ip> :<reason>
+UNSZLINE <ip>
+
+To place and remove gcos bans by services:
+
+SGLINE <length> :<mask>:<reason>
+UNSGLINE :<mask>
+
+To place and remove channelname jupes by services/operators:
+
+JUPITER <mask> :<reason>
+UNJUPITER <mask> :<reason>
+Please note that JUPITER may be removed in near future in favor of SQLINE.
+
+Placing autokills:
+
+AKILL <host> <user> <duration> <setter name> <setting time> :<reason>
+
+Placing autokill exclusions:
+
+EXCLUDE <host> <user> <duration> <setter name> <setting time> :<reason>
+
+Removing autokills:
+
+RAKILL <host> <user>
+
+Removing autokill exclusions:
+
+REXCLUDE <host> <user>
+
+
+Following Uline only commands are also available
+
+SVSNICK <nickname> <newnick> :<timestamp>
+SVSMODE <nickname> <timestamp> <modes> <optional arguments>
+SVSMODE <channelname> -<mode> <nickname>
+SVSNOOP <servername> :[+/-]
+SVSKILL <nickname> :<reason>
+SVSJOIN <nickname> <channel>[,<channel>,...] :<timestamp>

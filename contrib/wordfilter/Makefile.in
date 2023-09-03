@@ -1,0 +1,118 @@
+#
+# Makefile.in for trircd5
+#
+BN1             = tr
+BN2             = -ir
+BN3             = cd
+CC              = @CC@
+INSTALL         = @INSTALL@
+INSTALL_BIN     = @INSTALL_PROGRAM@
+INSTALL_DATA    = @INSTALL_DATA@
+INSTALL_SUID    = @INSTALL_PROGRAM@ -o root -m 4755
+RM              = @RM@
+LEX             = @LEX@
+AR              = @AR@
+LD		= @LD@
+RANLIB          = @RANLIB@
+MD5SUMS         = @MD5SUMS@
+LEXLIB          = @LEXLIB@
+CFLAGS          = @IRC_CFLAGS@ -DBASENAME=\"$(BN1)$(BN2)$(BN3)\" -DIRCD_PREFIX=\"@prefix@\"
+LDFLAGS         = @LDFLAGS@
+MKDEP           = @MKDEP@ -DBASENAME=\"$(BN1)$(BN2)$(BN3)\" -DIRCD_PREFIX=\"@prefix@\"
+MV              = @MV@
+RM              = @RM@
+YACC            = @YACC@
+PICFLAGS        = @PICFLAGS@
+prefix          = @prefix@
+exec_prefix     = @exec_prefix@
+bindir          = @bindir@
+libdir		= @libdir@
+libexecdir      = @libexecdir@
+sysconfdir      = @sysconfdir@
+localstatedir   = @localstatedir@
+
+IRCD_EXE        = @PROG_IRCD@          
+MD5SUM_EXE      = @PROG_MD5SUM@
+
+PROGS           = $(IRCD_EXE) $(MD5SUM_EXE)
+
+STATICLIBS      = @STATIC_LIBS@
+
+INCLUDES        = -I../../include
+CPPFLAGS        = ${INCLUDES} @CPPFLAGS@
+MODFLAGS        = @STATICFLAG@
+
+ITEM_0 = cm_nofilter.c init.c internal.c m_wordfilter.c wordhooks.c
+
+SOURCES = $(ITEM_0)
+
+FUNCT   = wordfilter.so
+
+OBJECTS = $(SOURCES:.c=.o)
+SHLIBS  = $(FUNCT:.so=.sl)
+
+all: @MOD_TARGET@
+
+build: all
+
+depend: 
+	@${MKDEP} $(INCLUDES) ${SOURCES} > .depend.tmp 
+	@sed -e '/^# DO NOT DELETE THIS LINE/,$$d' <Makefile >Makefile.depend
+	@echo '# DO NOT DELETE THIS LINE!!!' >>Makefile.depend
+	@echo '# make depend needs it.' >>Makefile.depend
+	@sed -e s/.o:/.so:/ <.depend.tmp >>Makefile.depend
+	@$(MV) Makefile.depend Makefile
+	@$(RM) -f .depend.tmp
+
+clean:
+	$(RM) -f *.so *.sl *~ *.lo *.a *.o
+
+distclean: clean
+	$(RM) -f Makefile
+
+.SUFFIXES: .o .so .sl
+
+.c.o:
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+.so.sl:
+	$(LD) -b -o $@ $<
+
+nothing:
+
+static: $(OBJECTS)
+	$(RM) -f wordfilter.a
+	$(AR) cq wordfilter.a $(OBJECTS)
+	$(RANLIB) wordfilter.a
+	$(MV) wordfilter.a ../
+
+dynamic: $(OBJECTS)
+	$(CC) -DTOKEN $(PICFLAGS) $(CFLAGS) $(MODFLAGS) $(INCLUDES) -o $(FUNCT) $(OBJECTS)
+
+shlibs: $(SHLIBS)
+
+hpux_shared: $(OBJECTS)
+	${MAKE} shlibs
+
+install:
+	-@if test -z "`grep STATIC_MODULES\ 1 ../../include/setup.h`" ; then \
+		echo "Installing wordfilter module files" ; \
+		echo "$(INSTALL) -d ${libdir}/contrib" ; \
+		$(INSTALL) -d ${libdir}/contrib ; \
+		echo "$(INSTALL) *.s* ${libdir}/contrib" ; \
+		$(INSTALL) *.s* ${libdir}/contrib ; \
+	else \
+		echo "Not installing wordfilter module files, since STATIC_MODULES defined." ; \
+	fi
+
+makesums:
+	@echo "Creating .md5sums..."
+	@$(RM) -f .md5sums
+	@for i in $(SOURCES) version.c.SH; do \
+		$(MD5SUMS) $$i >> .md5sums; \
+	done
+
+.PHONY: depend clean distclean
+
+# DO NOT DELETE THIS LINE!!!
+# make depend needs it.

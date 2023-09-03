@@ -1,0 +1,20 @@
+$Id: README,v 1.2 2003/06/14 13:55:48 tr-ircd Exp $
+
+Following contributional modules exist:
+
+m_locops : Allows the usage of /locops, to send a notice to local operators
+m_rnotice : Allows the usage of /rnotice, to send a notice to all +r nicks
+m_sadmins : Allows the usage of /sadmins, to send a notice to all services administrators
+m_admins : Allows the usage of /admins, to send a notice to all server administrators
+
+wordfilter : Allows the usage of
+
+	/denytext <string> :<reason>
+	/undenytext <string> :<reason>
+	/stats w
+
+	Which will make the operator set filtered words and remove them.
+	These words cannot be used in PRIVMSG.
+	Use the stats command to list the filters.
+
+

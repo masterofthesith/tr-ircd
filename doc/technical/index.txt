@@ -1,0 +1,12 @@
+Technical Documentation for TR-IRCD 5
+
+README.TSora              - Description of the TS3 protocol
+event.txt                 - Outline of the event system
+fd-management.txt         - Outline of the file descriptor management system
+file-management.txt       - Outline of the disk file management system
+linebuf.txt               - Outline of the linebuf system (dbuf replacement)
+network.txt               - Outline of the network traffic subsystem
+rfc1459.txt               - The IRC RFC
+whats-new-code.txt        - Whats changed in the code
+
+# $Id: index.txt,v 1.2 2003/06/14 13:55:49 tr-ircd Exp $
