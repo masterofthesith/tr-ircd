@@ -1,0 +1,178 @@
+#
+# Makefile.in for trircd5
+#
+BN1             = tr
+BN2             = -ir
+BN3             = cd
+CC              = @CC@
+INSTALL         = @INSTALL@
+INSTALL_BIN     = @INSTALL_PROGRAM@
+INSTALL_DATA    = @INSTALL_DATA@
+INSTALL_SUID    = @INSTALL_PROGRAM@ -o root -m 4755
+RM              = @RM@
+LEX             = @LEX@
+AR              = @AR@
+RANLIB          = @RANLIB@
+MD5SUMS         = @MD5SUMS@
+LEXLIB          = @LEXLIB@
+CFLAGS          = @IRC_CFLAGS@ -DBASENAME=\"$(BN1)$(BN2)$(BN3)\" -DIRCD_PREFIX=\"@prefix@\"
+LDFLAGS         = @LDFLAGS@
+BITFLAGS	= @BITFLAGS@
+MKDEP           = @MKDEP@
+MV              = @MV@
+GREP		= @GREP@
+RM              = @RM@
+YACC            = @YACC@
+prefix          = @prefix@
+exec_prefix     = @exec_prefix@
+bindir          = @bindir@
+libexecdir      = @libexecdir@
+libdir          = @libdir@
+sysconfdir      = @sysconfdir@
+localstatedir   = @localstatedir@
+
+SSL_INCLUDES    = @SSL_INCLUDES@
+
+IRCD_EXE        = @PROG_IRCD@          
+
+PROGS           = $(IRCD_EXE)
+
+SUBDIRLIBS_1    = ../server/server.a ../newconf/config.a 
+SUBDIRLIBS_2	= logsystem/liblog.a iupdt/iupdt.a ../lib/ilib.a interproc/iproc.a
+
+SUBDIRLIBS	= $(SUBDIRLIBS_1) $(SUBDIRLIBS_2)
+
+LIBRARYLIBS	= @SSL_LIBS@ $(LEXLIB) -L../lib/adns -ladns -L../lib/zlib -lz
+
+STATICLIBS	= @STATIC_LIBS@
+IRCDLIBS        = $(SUBDIRLIBS) $(STATICLIBS) @MODULES_LIBS@ @LIBS@ $(LIBRARYLIBS)
+
+INCLUDES        = -I../include   $(SSL_INCLUDES)
+CPPFLAGS        = ${INCLUDES} @CPPFLAGS@
+
+SRC_0 = adns.c boot.c blalloc.c chanmodes.c channel.c capability.c class.c client.c 
+SRC_1 = commands.c confitem.c dh.c dynlink.c event.c eventmap.c fd.c fileio.c flush.c  
+SRC_2 = hash.c hook.c hostmask.c identity.c ircd.c ircsprintf.c linebuf.c loader.c 
+SRC_3 = maskitem.c match.c memory.c modcommands.c modules.c optparse.c parse.c 
+SRC_4 = paths.c pseudo.c protocol.c rc4.c send.c ssl.c stats.c support.c 
+SRC_5 = textedit.c throttle.c tools.c usermodes.c watch.c whowas.c zlink.c
+
+SOURCES = $(SRC_0) $(SRC_1) $(SRC_2) $(SRC_3) $(SRC_4) $(SRC_5)
+
+OBJECTS = $(SOURCES:.c=.o) version.o
+
+all: $(IRCD_EXE)
+
+build: all
+
+# Yuck - don't use this.
+depend:
+	@${MKDEP} $(INCLUDES) ${SOURCES} > .depend.tmp 
+	@sed -e '/^# DO NOT DELETE THIS LINE/,$$d' <Makefile >Makefile.depend
+	@echo '# DO NOT DELETE THIS LINE!!!' >>Makefile.depend
+	@echo '# make depend needs it.' >>Makefile.depend
+	@cat .depend.tmp >>Makefile.depend
+	@$(MV) Makefile.depend Makefile
+	@$(RM) -f .depend.tmp
+	${MAKE} -C interproc depend
+	${MAKE} -C iupdt depend
+	${MAKE} -C httpd depend
+	${MAKE} -C proxymon depend
+	${MAKE} -C logsystem depend
+
+clean:
+	$(RM) -f *.o *~ $(IRCD_EXE).core core $(IRCD_EXE) version.c.last
+	${MAKE} -C ../lib/zlib -f Makefile.tr-ircd clean
+	${MAKE} -C interproc clean
+	${MAKE} -C iupdt clean
+	${MAKE} -C httpd clean
+	${MAKE} -C logsystem clean
+	${MAKE} -C proxymon clean
+
+distclean: clean
+	$(RM) -f Makefile version.c.last
+	${MAKE} -C ../lib/zlib -f Makefile.tr-ircd distclean
+	${MAKE} -C interproc distclean
+	${MAKE} -C iupdt distclean
+	${MAKE} -C httpd distclean
+	${MAKE} -C logsystem distclean
+	${MAKE} -C proxymon distclean
+
+.c.o:
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+static-objects:
+	if test -n "`grep "STATIC_MODULES\ 1" ../include/setup.h`" ; then \
+		if test -z "`grep httpd static.c`" ; then \
+			echo "extern void httpd_init(void);" >> ../include/static.h ; \
+			if test -n "`grep "USE_OPM\ 1" ../include/setup.h`" ; then \
+				echo "extern void proxymon_init(void);" >> ../include/static.h ; \
+				echo " proxymon_init();" >> static.c ; \
+			fi ; \
+			echo " httpd_init();" >> static.c ; \
+		fi \
+	fi
+	if test -z "`grep "}" static.c`" ; then \
+		echo "}" >> static.c ; \
+	fi
+	$(CC) $(CFLAGS) $(INCLUDES) -c static.c -o static.o
+
+$(IRCD_EXE): $(OBJECTS)
+	${MAKE} static-objects
+	${MAKE} -C ../lib/zlib -f Makefile.tr-ircd build
+	${MAKE} -C interproc build
+	${MAKE} -C iupdt build
+	${MAKE} -C httpd build
+	${MAKE} -C logsystem build
+	if test -n "`grep "STATIC_MODULES\ 1" ../include/setup.h`" ; then \
+		if test -n "`grep "USE_OPM\ 1" ../include/setup.h`" ; then \
+			${MAKE} -C proxymon build ; \
+			$(CC) ${LDFLAGS} ${BITFLAGS} -o ${IRCD_EXE} $(OBJECTS) static.o httpd/httpd.so proxymon/proxymon.so $(IRCDLIBS) ; \
+		else \
+			$(CC) ${LDFLAGS} ${BITFLAGS} -o ${IRCD_EXE} $(OBJECTS) static.o httpd/httpd.so $(IRCDLIBS) ; \
+		fi \
+	else \
+		if test -n "`grep "USE_OPM\ 1" ../include/setup.h`" ; then \
+			${MAKE} -C proxymon build ; \
+		fi ; \
+		$(CC) ${LDFLAGS} ${BITFLAGS} -o ${IRCD_EXE} $(OBJECTS) static.o $(IRCDLIBS) ; \
+	fi
+	$(MV) version.c version.c.last
+
+install:
+	@echo "Installing ircd"	
+	$(INSTALL) -d ${bindir}
+	$(INSTALL) -d ${localstatedir}/log/$(BN1)$(BN2)$(BN3)
+	$(INSTALL) -d ${localstatedir}/run/$(BN1)$(BN2)$(BN3)
+	$(INSTALL) -d ${localstatedir}/lib/$(BN1)$(BN2)$(BN3)
+	$(INSTALL_BIN) $(PROGS) ${bindir}
+	if test -z "`grep "STATIC_MODULES\ 1" ../include/setup.h`" ; then \
+		if test -n "`grep "USE_OPM\ 1" ../include/setup.h`" ; then \
+			${MAKE} -C proxymon install ; \
+		fi ; \
+		${MAKE} -C httpd install ; \
+	fi
+
+uninstall:
+	@echo "Removing ircd"
+	${RM} -f ${bindir}/$(PROGS)
+	${MAKE} -C proxymon uninstall
+	${MAKE} -C httpd uninstall
+
+makesums:
+	@echo "Creating .md5sums..."
+	@$(RM) -f .md5sums
+	@for i in $(SOURCES); do \
+		$(MD5SUMS) $$i >> .md5sums; \
+	done
+	${MAKE} -C interproc makesums
+	${MAKE} -C iupdt makesums
+	${MAKE} -C httpd makesums
+	${MAKE} -C logsystem makesums
+	${MAKE} -C proxymon makesums
+
+version.c: version.c.SH
+	/bin/sh ./version.c.SH $(MD5SUMS)
+
+# DO NOT DELETE THIS LINE!!!
+# make depend needs it${MAKE} -C ../lib/zlib -f Makefile.tr-ircd build.
