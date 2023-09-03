@@ -1,0 +1,66 @@
+#
+# Makefile.in for trircd5
+#
+BN1             = tr
+BN2             = -ir
+BN3             = cd
+CC              = @CC@
+INSTALL         = @INSTALL@
+INSTALL_BIN     = @INSTALL_PROGRAM@
+INSTALL_DATA    = @INSTALL_DATA@
+INSTALL_SUID    = @INSTALL_PROGRAM@ -o root -m 4755
+RM              = @RM@
+LEX             = @LEX@
+AR              = @AR@
+RANLIB          = @RANLIB@
+MD5SUMS         = @MD5SUMS@
+LEXLIB          = @LEXLIB@
+CFLAGS          = @IRC_CFLAGS@ -DBASENAME=\"$(BN1)$(BN2)$(BN3)\" -DIRCD_PREFIX=\"@prefix@\"
+LDFLAGS         = @LDFLAGS@
+MKDEP           = @MKDEP@ -DBASENAME=\"$(BN1)$(BN2)$(BN3)\" -DIRCD_PREFIX=\"@prefix@\"
+MV              = @MV@
+RM              = @RM@
+YACC            = @YACC@
+prefix          = @prefix@
+exec_prefix     = @exec_prefix@
+bindir          = @bindir@
+libexecdir      = @libexecdir@
+sysconfdir      = @sysconfdir@
+localstatedir   = @localstatedir@
+
+PROGS           = @PROG_TOOLS@ iupdt.sh isslconfig.sh irandom.sh
+IRCPASSWD_EXE	= @PROG_TOOLS@
+
+SUBDIRLIBS      = ../lib/md5hash.o ../lib/md5/md5.o
+STATICLIBS      = @STATIC_LIBS@
+IRCDLIBS        = $(SUBDIRLIBS) $(STATICLIBS) $(LDFLAGS) @MODULES_LIBS@ @LIBS@ 
+
+INCLUDES        = -I../include  
+CPPFLAGS        = ${INCLUDES} @CPPFLAGS@
+
+TOOLS = ircpasswd.c
+
+all: $(IRCPASSWD_EXE)
+
+build: all
+
+depend:
+	@echo "Finalized"
+
+$(IRCPASSWD_EXE): ircpasswd.o
+	$(CC) ircpasswd.o $(SUBDIRLIBS) -o $(IRCPASSWD_EXE)
+
+clean:
+	$(RM) -f $(OBJECTS) $(IRCPASSWD_EXE) *.o *~ core
+
+distclean: clean
+	$(RM) -f Makefile iupdt.sh isslconfig.sh irandom.sh
+
+.c.o:
+	$(CC) -DIRCPASSWD $(CFLAGS) $(INCLUDES) -c $<
+
+install:
+	@echo "Installing tools"
+	$(INSTALL) -d ${bindir}
+	$(INSTALL_BIN) $(PROGS) ${bindir}
+
