@@ -5,6 +5,7 @@
 
 Use the following commands:
 `./configure --prefix=/destination/directory`
+
 `make install`
 
 See the INSTALL document for info on configuring and compiling
